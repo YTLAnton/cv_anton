@@ -9,34 +9,65 @@
                                     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
                                         <link rel="stylesheet" href="./css/style.css">
                                             <style>
-        /* Fade transition support */
+                                                /* Fade transition support */
                                                 .lang-section {transition: opacity 0.3s ease-in-out; }
                                                 .hidden {display: none; }
                                                 .opacity-0 {opacity: 0; }
                                                 .opacity-100 {opacity: 1; }
 
+                                                /* Absolute separation of hidden elements in print */
+                                                @media print {
+                                                    .hidden { display: none !important; }
+                                                    .lang-section:not(.hidden) { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; }
+                                                }
+
+                                                /* A4 Paper Simulation on Desktop */
+                                                @media screen and (min-width: 1024px) {
+                                                    body {
+                                                        background-color: #f1f5f9 !important; /* slate-100 */
+                                                        display: flex !important;
+                                                        justify-content: center !important;
+                                                        align-items: flex-start !important;
+                                                        min-height: 100vh !important;
+                                                        padding: 40px 0 !important;
+                                                    }
+                                                    .cv-container {
+                                                        width: 210mm !important;
+                                                        min-height: 297mm !important;
+                                                        background: white !important;
+                                                        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+                                                        position: relative !important;
+                                                    }
+                                                }
+
                                                 /* Print Optimization */
                                                 @media print {
                                                     @page {
-                                                        margin: 1.5cm; /* CSS-only way to have margins on every page */
-                                                        size: auto;
+                                                        margin: 0; /* Set to 0 to avoid additive margins with container padding */
+                                                        size: A4;
                                                     }
                                                     body {
-                                                        margin: 0 !important; /* Reset body margin to avoid doubling */
-                                                        padding: 0;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;
                                                         background: white !important;
+                                                        display: block !important; /* Reset flex */
                                                     }
                                                     .cv-container {
                                                         box-shadow: none !important;
-                                                        min-height: auto !important;
+                                                        min-height: auto !important; /* Crucial: Remove forced min-height in print */
                                                         margin: 0 !important;
                                                         padding: 0 !important;
                                                         width: 100% !important;
                                                         max-width: 100% !important;
+                                                        overflow: visible !important;
                                                         print-color-adjust: exact;
                                                         -webkit-print-color-adjust: exact;
                                                     }
-                                                    /* Force hide non-visible elements to maximize ATS safety */
+                                                    /* Ensure footer stays relative or hidden if weird behavior */
+                                                    footer {
+                                                        position: relative !important;
+                                                        bottom: auto !important;
+                                                    }
                                                     .no-print, .hidden, .opacity-0 {
                                                         display: none !important;
                                                         opacity: 0 !important;
@@ -44,19 +75,18 @@
                                                         width: 0 !important;
                                                         overflow: hidden !important;
                                                     }
-                                                    /* Ensure text contrast in print */
                                                     h1, h2, h3, p, li {
                                                         color: #000 !important;
                                                     }
                                                 }
                                             </style>
                                         </head>
-                                        <body class="py-0 px-0 lg:py-10 lg:px-4 print:py-0 print:px-0">
-                                            <div class="cv-container w-full max-w-5xl mx-auto bg-white shadow-xl relative overflow-hidden flex flex-col min-h-screen lg:min-h-[1123px]">
+                                        <body class="py-0 px-0 print:py-0 print:px-0">
+                                            <div class="cv-container w-full mx-auto bg-white shadow-xl relative flex flex-col min-h-screen lg:min-h-[1123px] print:min-h-0 print:h-auto">
 
                                                 <!-- Language Content Blocks -->
                                                 
-            <div id="content-zh" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 opacity-100 print:grid-cols-12">
+            <div id="content-zh" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 opacity-100">
 
                 <!-- LEFT COLUMN (Main Content): Col-8 -->
                 <!-- Use 'contents' for mobile to allow children to be part of the main grid, enabling reordering -->
@@ -64,7 +94,7 @@
 
                     <!-- HEADER LEFT (Name/Summary/Contact) -->
                     <!-- Mobile Order: 1 -->
-                    <header class="order-1 lg:order-none col-span-1 p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8 bg-white lg:bg-transparent">
+                    <header class="order-1 lg:order-none col-span-1 p-[1.5cm] lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-[1.5cm] print:pb-4 print:pr-8 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
                             劉胤檀
                             <br class="hidden print:block"><span class="text-xl font-light text-slate-400 align-middle">(Ying-Tan Liu)&nbsp;&nbsp;&nbsp;Anton Liu</span>
@@ -85,11 +115,11 @@
 
                     <!-- BODY LEFT (Work & Education) -->
                     <!-- Mobile Order: 4 -->
-                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8 bg-white lg:bg-transparent">
+                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-[1.5cm] lg:pr-8 lg:pt-8 flex-grow print:p-[1.5cm] print:pr-8 print:pt-8 bg-white lg:bg-transparent">
                         <section>
-                            <div class="flex items-center gap-3 mb-8">
+                            <div class="flex items-center gap-3 mb-8 print:mb-4">
                                 <div class="w-8 h-1 bg-slate-800"></div>
-                                <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">Work Experience</h2>
+                                <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">工作經歷</h2>
                             </div>
 
                             <div class="timeline-line pl-8 markdown-content">
@@ -105,7 +135,7 @@
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
-<li><strong>AI 效能工作流導入</strong>：建立 <strong>輔助開發流程 (Agentic Workflow)</strong>，提升文件產出的<strong>精準度與跨部門對齊效率</strong>，降低溝通成本。</li>
+<li><strong>AI 效能工作流導入</strong>：建立 <strong>輔助開發流程</strong>，提升文件產出的精準度與跨部門對齊效率，降低溝通成本。</li>
 <li><strong>社群系統從 0 到 1 構建</strong>：在 <strong>6 個月</strong>完成 MVP 開發至上線，歷經多次核心版本迭代，涵蓋內容發布、互動系統、自動/媒體審核、數據監控。</li>
 <li><strong>用戶增長與激勵體系優化</strong>：優化紅包系統（包含自動領取、批量設定、打碼倍率）與邀請自動入群機制。</li>
 <li><strong>跨端體驗與訪客轉換</strong>：實現 mWeb 社群化整合，優化訪客模式及站外分享。</li>
@@ -125,7 +155,7 @@
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
-<li><strong>從 0 到 1</strong>：在 <strong>2 個月</strong>內完成產品開發並上線後持續迭代。</li>
+<li><strong>從 0 到 1</strong>：<strong>2 個月</strong>完成產品開發，上線後持續迭代。</li>
 <li><strong>建立敏捷開發流程</strong>：協調 <strong>11 人團隊</strong>，建立並實施敏捷開發流程，縮短交付週期並實現價值的持續產出。</li>
 </ul>
 </li>
@@ -142,24 +172,24 @@
 <li><strong>核心成就</strong>:<ul>
 <li><strong>虛擬貨幣金流</strong>：規劃 <strong>USDT 出入金</strong> 與 <strong>錢包綁定流程</strong>。</li>
 <li><strong>架構設計</strong>：規劃 <strong>多語系框架</strong> 並制定 <strong>Key 命名規則</strong>。</li>
-<li><strong>線上維運</strong>：處理正式環境各產線異常，確保平台服務穩定性。</li>
+<li><strong>線上維運</strong>：處理正式環境各狀況，確保平台穩定服務。</li>
 </ul>
 </li>
 </ul>
-<h3>產品經理 | 馬紹爾群島商彩虹科技股份有限公司</h3>
+<h3>產品經理 | 彩虹科技股份有限公司</h3>
 <p><em>2019/11 ~ 2021/01</em></p>
 <ul>
 <li><strong>專案簡介</strong>: 國際德州撲克平台。</li>
 <li><strong>關鍵責任</strong>:<ul>
 <li>與部門主管及各部門進行需求訪談與溝通。</li>
-<li>研究、規劃與設計平台之前後端功能、系統以及 UI/UX。</li>
+<li>研究、規劃與設計平台之前後端功能、系統。</li>
 <li>安排與訂定開發時程。</li>
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
 <li><strong>國際合規</strong>：建立 <strong>KYC 系統</strong>，取得 <strong>曼島政府牌照</strong>，實現平台全球合法化營運。</li>
 <li><strong>營運自動化</strong>：導入 <strong>自動返水、郵箱驗證</strong>，提升運維效率與帳戶安全。</li>
-<li><strong>產品增長與變現</strong>：規劃 <strong>iOS IAP、MTT 排行榜與 SpinUp 玩法</strong>，提升轉換。</li>
+<li><strong>產品增長與變現</strong>：規劃 <strong>iOS IAP、MTT 排行榜與 SpinUp 玩法</strong>，提升轉換與營收。</li>
 </ul>
 </li>
 </ul>
@@ -169,7 +199,7 @@
 <li><strong>專案簡介</strong>: 獨立手遊與實體桌遊開發。</li>
 <li><strong>關鍵責任</strong>:<ul>
 <li>與 CEO 及各部門進行產品溝通，並跟進開發與測試。</li>
-<li>研究、規劃與設計遊戲之前後端功能、系統以及 UI/UX。</li>
+<li>研究、規劃與設計遊戲之前後端功能、系統。</li>
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
@@ -186,7 +216,7 @@
 <li><strong>專案簡介</strong>: 休閒線上娛樂平台。</li>
 <li><strong>關鍵責任</strong>:<ul>
 <li>與部門主管及各部門進行需求訪談與溝通。</li>
-<li>研究、規劃與設計休閒娛樂平台之前後端功能、系統以及 UI/UX。</li>
+<li>研究、規劃與設計休閒娛樂平台之前後端功能、系統。</li>
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
@@ -198,16 +228,16 @@
 <p><em>2012/12 ~ 至今</em></p>
 <ul>
 <li><strong>關鍵責任</strong>:<ul>
-<li>與合作編輯、出版商、美術、美編與客戶溝通討論桌遊設計。</li>
-<li>設計桌遊的規則、系統、邏輯與 UI/UX；管理桌遊集資專案。</li>
+<li>與客戶、編輯、美術溝通討論桌遊設計。</li>
+<li>設計桌遊的規則、系統、邏輯與 UI/UX，管理集資。</li>
 </ul>
 </li>
 <li><strong>桌遊作品</strong>:<ul>
-<li><strong>《猜腳丫》</strong>：獨立設計，版權被新天鵝堡買下並全球發行多國語言。</li>
-<li><strong>《Office 21》</strong>：協助設計、出版與集資，版權被新天鵝堡買下並全球發行。</li>
-<li><strong>《空錢任務》</strong>：獨立設計，版權被山頂洞人實驗室買斷出版發行。</li>
-<li><strong>《Honey Moo》</strong>：宜蘭大學畜牧系委託案，版權被新天鵝堡買下並全球發行。</li>
-<li><strong>《龍厚搭》</strong>：曾頭設計公司新年禮盒委託案，由其出版發行。</li>
+<li><strong>《猜腳丫》</strong>：獨立設計，由新天鵝堡出版，全球發行。</li>
+<li><strong>《Office 21》</strong>：協助設計、出版與集資，由新天鵝堡出版，全球發行。</li>
+<li><strong>《空錢任務》</strong>：獨立設計，由山頂洞人實驗室出版。</li>
+<li><strong>《Honey Moo》</strong>：宜蘭大學畜牧系委託，由新天鵝堡出版，全球發行。</li>
+<li><strong>《龍厚搭》</strong>：曾頭設計公司委託，由該公司出版。</li>
 </ul>
 </li>
 </ul>
@@ -215,10 +245,10 @@
                             </div>
                         </section>
 
-                        <section class="mt-12">
-                            <div class="flex items-center gap-3 mb-8">
+                        <section class="mt-12 print:mt-6">
+                            <div class="flex items-center gap-3 mb-8 print:mb-4">
                                 <div class="w-8 h-1 bg-slate-800"></div>
-                                <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">Education</h2>
+                                <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">學歷</h2>
                             </div>
 
                             <div class="timeline-line pl-8 markdown-content">
@@ -241,7 +271,7 @@
 
                     <!-- HEADER RIGHT (Traits) -->
                     <!-- Mobile Order: 2 -->
-                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
+                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-[1.5cm] lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-[1.5cm] print:pl-8 print:pt-6 print:pb-4">
                         <!-- Traits -->
                         <!-- Mobile: Grid 2 Cols, Desktop: Flex Col -->
                         <div class="grid grid-cols-2 gap-3 lg:flex lg:flex-col items-start traits-list print:flex print:flex-col">
@@ -258,30 +288,54 @@
 
                     <!-- BODY RIGHT (Skills) -->
                     <!-- Mobile Order: 3 -->
-                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8 bg-slate-50 lg:bg-transparent">
-                        <section class="mb-12">
-                            <div class="flex items-center gap-3 mb-6">
+                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-[1.5cm] lg:pl-8 lg:pt-8 flex-grow print:p-[1.5cm] print:pl-8 print:pt-4 bg-slate-50 lg:bg-transparent">
+                        <section class="mb-12 print:mb-6">
+                            <div class="flex items-center gap-3 mb-6 print:mb-3">
                                 <div class="w-6 h-1 bg-slate-400"></div>
-                                <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="skills">Skills</h2>
+                                <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="skills">核心技能</h2>
                             </div>
                             <div class="markdown-content sidebar-content">
                                 
 <ul>
-<li><strong>核心工具</strong>: Axure, 墨刀 (Modao), Google Workspace, Jira, Confluence, Microsoft 365, Figma</li>
-<li><strong>技術協作</strong>: Basic API Testing (Postman), Version Control Logic (Git)</li>
-<li><strong>AI技能</strong>: AI Assisted Development, Generative AI Application, AI Enhanced Workflow</li>
-<li><strong>方法論</strong>: 敏捷開發 (Scrum), 瀑布開發, 專案管理, UI/UX規劃</li>
+<li><strong>核心工具</strong>:<ul>
+<li>Axure</li>
+<li>墨刀(Modao)</li>
+<li>Google Workspace</li>
+<li>Jira</li>
+<li>Confluence</li>
+<li>Microsoft 365</li>
+<li>Figma</li>
+</ul>
+</li>
+<li><strong>技術協作</strong>:<ul>
+<li>API 基礎測試 (Postman)</li>
+<li>基礎版控邏輯 (Git)</li>
+</ul>
+</li>
+<li><strong>AI技能</strong>:<ul>
+<li>AI 輔助開發</li>
+<li>生成式 AI 應用</li>
+<li>AI 優化工作流</li>
+</ul>
+</li>
+<li><strong>方法論</strong>:<ul>
+<li>敏捷開發 (Scrum)</li>
+<li>瀑布開發</li>
+<li>混合式開發</li>
+<li>需求釐清</li>
+<li>跨部門溝通</li>
+<li>優先級管理</li>
+</ul>
+</li>
 </ul>
 
                             </div>
                         </section>
-
-                    </section>
+                    </div>
                 </div>
             </div>
-            </div > 
                                                 
-            <div id="content-en" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 hidden opacity-0 print:grid-cols-12">
+            <div id="content-en" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 hidden opacity-0">
 
                 <!-- LEFT COLUMN (Main Content): Col-8 -->
                 <!-- Use 'contents' for mobile to allow children to be part of the main grid, enabling reordering -->
@@ -289,7 +343,7 @@
 
                     <!-- HEADER LEFT (Name/Summary/Contact) -->
                     <!-- Mobile Order: 1 -->
-                    <header class="order-1 lg:order-none col-span-1 p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8 bg-white lg:bg-transparent">
+                    <header class="order-1 lg:order-none col-span-1 p-[1.5cm] lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-[1.5cm] print:pb-4 print:pr-8 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
                             Ying-Tan Liu (Anton)
                             
@@ -310,9 +364,9 @@
 
                     <!-- BODY LEFT (Work & Education) -->
                     <!-- Mobile Order: 4 -->
-                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8 bg-white lg:bg-transparent">
+                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-[1.5cm] lg:pr-8 lg:pt-8 flex-grow print:p-[1.5cm] print:pr-8 print:pt-8 bg-white lg:bg-transparent">
                         <section>
-                            <div class="flex items-center gap-3 mb-8">
+                            <div class="flex items-center gap-3 mb-8 print:mb-4">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">Work Experience</h2>
                             </div>
@@ -440,8 +494,8 @@
                             </div>
                         </section>
 
-                        <section class="mt-12">
-                            <div class="flex items-center gap-3 mb-8">
+                        <section class="mt-12 print:mt-6">
+                            <div class="flex items-center gap-3 mb-8 print:mb-4">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">Education</h2>
                             </div>
@@ -466,7 +520,7 @@
 
                     <!-- HEADER RIGHT (Traits) -->
                     <!-- Mobile Order: 2 -->
-                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
+                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-[1.5cm] lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-[1.5cm] print:pl-8 print:pt-6 print:pb-4">
                         <!-- Traits -->
                         <!-- Mobile: Grid 2 Cols, Desktop: Flex Col -->
                         <div class="grid grid-cols-2 gap-3 lg:flex lg:flex-col items-start traits-list print:flex print:flex-col">
@@ -483,31 +537,55 @@
 
                     <!-- BODY RIGHT (Skills) -->
                     <!-- Mobile Order: 3 -->
-                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8 bg-slate-50 lg:bg-transparent">
-                        <section class="mb-12">
-                            <div class="flex items-center gap-3 mb-6">
+                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-[1.5cm] lg:pl-8 lg:pt-8 flex-grow print:p-[1.5cm] print:pl-8 print:pt-4 bg-slate-50 lg:bg-transparent">
+                        <section class="mb-12 print:mb-6">
+                            <div class="flex items-center gap-3 mb-6 print:mb-3">
                                 <div class="w-6 h-1 bg-slate-400"></div>
                                 <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="skills">Skills</h2>
                             </div>
                             <div class="markdown-content sidebar-content">
                                 
 <ul>
-<li><strong>Core Tools</strong>: Axure, Modao, Google Workspace, Jira, Confluence, Microsoft 365, Figma</li>
-<li><strong>Technical Collaboration</strong>: Basic API Testing (Postman), Version Control Logic (Git)</li>
-<li><strong>AI Skills</strong>: AI Assisted Development, Generative AI Application, AI Enhanced Workflow</li>
-<li><strong>Methodologies</strong>: Agile (Scrum), Waterfall, Project Management, UI/UX Planning</li>
+<li><strong>Core Tools</strong>: <ul>
+<li>Axure</li>
+<li>墨刀(Modao)</li>
+<li>Google Workspace</li>
+<li>Jira</li>
+<li>Confluence</li>
+<li>Microsoft 365</li>
+<li>Figma</li>
+</ul>
+</li>
+<li><strong>Technical Collaboration</strong>:<ul>
+<li>Basic API Testing (Postman)</li>
+<li>Version Control Logic (Git)</li>
+</ul>
+</li>
+<li><strong>AI Skills</strong>:<ul>
+<li>AI Assisted Development</li>
+<li>Generative AI Application</li>
+<li>AI Enhanced Workflow</li>
+</ul>
+</li>
+<li><strong>Methodologies</strong>:<ul>
+<li>Agile (Scrum)</li>
+<li>Waterfall</li>
+<li>Hybrid Model</li>
+<li>Requirement Clarification</li>
+<li>Cross-functional Communication</li>
+<li>Prioritization</li>
+</ul>
+</li>
 </ul>
 
                             </div>
                         </section>
-
-                    </section>
+                    </div>
                 </div>
             </div>
-            </div > 
 
                                                 <!-- Clean Footer -->
-                                                <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full absolute bottom-0 z-20"></footer>
+                                                <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full relative z-20 print:hidden"></footer>
                                             </div>
 
                                             <!-- UI Controls Container -->

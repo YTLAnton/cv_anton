@@ -98,6 +98,10 @@ async function build() {
             }).join('\n');
 
 
+            // 1.5cm is approx 56px. Using Tailwinds' nearest common value or custom.
+            // 1.5cm = 0.59in = 56.7px. Let's use custom 56px for accuracy.
+            const marginClass = 'p-[1.5cm]';
+
             return {
                 primaryName,
                 secondaryName,
@@ -106,7 +110,8 @@ async function build() {
                 traitsContent: stripTitles(sections[2] || ''),
                 skillsContent: stripTitles(sections[3] || ''),
                 workContent: stripTitles(sections[4] || ''),
-                educationContent: stripTitles(sections[5] || '')
+                educationContent: stripTitles(sections[5] || ''),
+                marginClass
             };
         }
 
@@ -116,10 +121,10 @@ async function build() {
         // Static Labels Map
         const labels = {
             zh: {
-                work: "Work Experience",
+                work: "工作經歷",
                 traits_title: "", // No title in original
-                skills: "Skills",
-                education: "Education",
+                skills: "核心技能",
+                education: "學歷",
                 print: "🖨️"
             },
             en: {
@@ -136,7 +141,7 @@ async function build() {
             if (!data) return '';
 
             return `
-            <div id="content-${lang}" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 ${isHidden ? 'hidden opacity-0' : 'opacity-100'} print:grid-cols-12">
+            <div id="content-${lang}" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 ${isHidden ? 'hidden opacity-0' : 'opacity-100'}">
 
                 <!-- LEFT COLUMN (Main Content): Col-8 -->
                 <!-- Use 'contents' for mobile to allow children to be part of the main grid, enabling reordering -->
@@ -144,7 +149,7 @@ async function build() {
 
                     <!-- HEADER LEFT (Name/Summary/Contact) -->
                     <!-- Mobile Order: 1 -->
-                    <header class="order-1 lg:order-none col-span-1 p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8 bg-white lg:bg-transparent">
+                    <header class="order-1 lg:order-none col-span-1 ${data.marginClass} lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:${data.marginClass} print:pb-4 print:pr-8 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
                             ${data.primaryName}
                             ${data.secondaryName ? `<br class="hidden print:block"><span class="text-xl font-light text-slate-400 align-middle">${data.secondaryName}</span>` : ''}
@@ -160,9 +165,9 @@ async function build() {
 
                     <!-- BODY LEFT (Work & Education) -->
                     <!-- Mobile Order: 4 -->
-                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8 bg-white lg:bg-transparent">
+                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:${data.marginClass} lg:pr-8 lg:pt-8 flex-grow print:${data.marginClass} print:pr-8 print:pt-8 bg-white lg:bg-transparent">
                         <section>
-                            <div class="flex items-center gap-3 mb-8">
+                            <div class="flex items-center gap-3 mb-8 print:mb-4">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">${labels[lang].work}</h2>
                             </div>
@@ -172,8 +177,8 @@ async function build() {
                             </div>
                         </section>
 
-                        <section class="mt-12">
-                            <div class="flex items-center gap-3 mb-8">
+                        <section class="mt-12 print:mt-6">
+                            <div class="flex items-center gap-3 mb-8 print:mb-4">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">${labels[lang].education}</h2>
                             </div>
@@ -191,7 +196,7 @@ async function build() {
 
                     <!-- HEADER RIGHT (Traits) -->
                     <!-- Mobile Order: 2 -->
-                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
+                    <div class="order-2 lg:order-none col-span-1 p-6 lg:${data.marginClass} lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:${data.marginClass} print:pl-8 print:pt-6 print:pb-4">
                         <!-- Traits -->
                         <!-- Mobile: Grid 2 Cols, Desktop: Flex Col -->
                         <div class="grid grid-cols-2 gap-3 lg:flex lg:flex-col items-start traits-list print:flex print:flex-col">
@@ -201,9 +206,9 @@ async function build() {
 
                     <!-- BODY RIGHT (Skills) -->
                     <!-- Mobile Order: 3 -->
-                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8 bg-slate-50 lg:bg-transparent">
-                        <section class="mb-12">
-                            <div class="flex items-center gap-3 mb-6">
+                    <div class="order-3 lg:order-none col-span-1 p-6 lg:${data.marginClass} lg:pl-8 lg:pt-8 flex-grow print:${data.marginClass} print:pl-8 print:pt-4 bg-slate-50 lg:bg-transparent">
+                        <section class="mb-12 print:mb-6">
+                            <div class="flex items-center gap-3 mb-6 print:mb-3">
                                 <div class="w-6 h-1 bg-slate-400"></div>
                                 <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="skills">${labels[lang].skills}</h2>
                             </div>
@@ -211,11 +216,9 @@ async function build() {
                                 ${data.skillsContent}
                             </div>
                         </section>
-
-                    </section>
+                    </div>
                 </div>
-            </div>
-            </div > `;
+            </div>`;
         }
 
         const template = `
@@ -229,34 +232,65 @@ async function build() {
                                     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
                                         <link rel="stylesheet" href="./css/style.css">
                                             <style>
-        /* Fade transition support */
+                                                /* Fade transition support */
                                                 .lang-section {transition: opacity 0.3s ease-in-out; }
                                                 .hidden {display: none; }
                                                 .opacity-0 {opacity: 0; }
                                                 .opacity-100 {opacity: 1; }
 
+                                                /* Absolute separation of hidden elements in print */
+                                                @media print {
+                                                    .hidden { display: none !important; }
+                                                    .lang-section:not(.hidden) { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; }
+                                                }
+
+                                                /* A4 Paper Simulation on Desktop */
+                                                @media screen and (min-width: 1024px) {
+                                                    body {
+                                                        background-color: #f1f5f9 !important; /* slate-100 */
+                                                        display: flex !important;
+                                                        justify-content: center !important;
+                                                        align-items: flex-start !important;
+                                                        min-height: 100vh !important;
+                                                        padding: 40px 0 !important;
+                                                    }
+                                                    .cv-container {
+                                                        width: 210mm !important;
+                                                        min-height: 297mm !important;
+                                                        background: white !important;
+                                                        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+                                                        position: relative !important;
+                                                    }
+                                                }
+
                                                 /* Print Optimization */
                                                 @media print {
                                                     @page {
-                                                        margin: 1.5cm; /* CSS-only way to have margins on every page */
-                                                        size: auto;
+                                                        margin: 0; /* Set to 0 to avoid additive margins with container padding */
+                                                        size: A4;
                                                     }
                                                     body {
-                                                        margin: 0 !important; /* Reset body margin to avoid doubling */
-                                                        padding: 0;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;
                                                         background: white !important;
+                                                        display: block !important; /* Reset flex */
                                                     }
                                                     .cv-container {
                                                         box-shadow: none !important;
-                                                        min-height: auto !important;
+                                                        min-height: auto !important; /* Crucial: Remove forced min-height in print */
                                                         margin: 0 !important;
                                                         padding: 0 !important;
                                                         width: 100% !important;
                                                         max-width: 100% !important;
+                                                        overflow: visible !important;
                                                         print-color-adjust: exact;
                                                         -webkit-print-color-adjust: exact;
                                                     }
-                                                    /* Force hide non-visible elements to maximize ATS safety */
+                                                    /* Ensure footer stays relative or hidden if weird behavior */
+                                                    footer {
+                                                        position: relative !important;
+                                                        bottom: auto !important;
+                                                    }
                                                     .no-print, .hidden, .opacity-0 {
                                                         display: none !important;
                                                         opacity: 0 !important;
@@ -264,22 +298,21 @@ async function build() {
                                                         width: 0 !important;
                                                         overflow: hidden !important;
                                                     }
-                                                    /* Ensure text contrast in print */
                                                     h1, h2, h3, p, li {
                                                         color: #000 !important;
                                                     }
                                                 }
                                             </style>
                                         </head>
-                                        <body class="py-0 px-0 lg:py-10 lg:px-4 print:py-0 print:px-0">
-                                            <div class="cv-container w-full max-w-5xl mx-auto bg-white shadow-xl relative overflow-hidden flex flex-col min-h-screen lg:min-h-[1123px]">
+                                        <body class="py-0 px-0 print:py-0 print:px-0">
+                                            <div class="cv-container w-full mx-auto bg-white shadow-xl relative flex flex-col min-h-screen lg:min-h-[1123px] print:min-h-0 print:h-auto">
 
                                                 <!-- Language Content Blocks -->
                                                 ${renderBody(zhData, 'zh', false)}
                                                 ${enData ? renderBody(enData, 'en', true) : ''}
 
                                                 <!-- Clean Footer -->
-                                                <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full absolute bottom-0 z-20"></footer>
+                                                <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full relative z-20 print:hidden"></footer>
                                             </div>
 
                                             <!-- UI Controls Container -->
