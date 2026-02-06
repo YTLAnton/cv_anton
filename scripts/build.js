@@ -29,7 +29,8 @@ async function build() {
         /**
          * @typedef {Object} SectionData
          * @property {string} primaryName - Main display name.
-         * @property {string} secondaryName - Secondary/translated name.
+         * @property {string} legalName - English legal name (for ZH section).
+         * @property {string} nickName - English nickname.
          * @property {string} summaryContent - Professional summary HTML.
          * @property {string} contactHtml - Contact info HTML.
          * @property {string} traitsContent - Characteristics section HTML.
@@ -66,13 +67,18 @@ async function build() {
                 }
             });
 
-            // Helper to render tokens back to HTML
             const renderTokens = (tokenList) => {
                 if (!tokenList || tokenList.length === 0) return '';
-                // marked.parser takes a list of tokens
-                // We need to wrap it in a "Links" context if needed, but usually direct is fine
-                // Hack: marked.parser expects `this.tokens.links` if strict, but let's try basic static parse
-                return marked.parser(tokenList);
+                // Post-process HTML to add target="_blank" and professional styles to all links
+                // For SPEC links, we make them smaller and remove bold weight
+                return marked.parser(tokenList)
+                    .replace(/<a (href="[^"]*")>([\s\S]*?)<\/a>/g, (match, href, content) => {
+                        let classes = "transition-colors hover:text-slate-800";
+                        if (content.includes('SPEC')) {
+                            classes += " text-sm font-normal ml-2 opacity-80";
+                        }
+                        return `<a ${href} target="_blank" rel="noopener noreferrer" class="${classes}">${content}</a>`;
+                    });
             };
 
             // 3. Extract Specific Sections (Robust Matching)
@@ -82,7 +88,7 @@ async function build() {
 
             // Find H1 for Name
             const nameToken = tokens.find(t => t.type === 'heading' && t.depth === 1);
-            const fullTitle = nameToken ? nameToken.text : '劉胤檀 Anton Liu';
+            const fullTitle = nameToken ? nameToken.text.trim() : '劉胤檀 (Ying-Tan Liu) Anton Liu';
 
             // Find Blockquote for Summary
             const summaryToken = headerTokens.find(t => t.type === 'blockquote');
@@ -99,20 +105,30 @@ async function build() {
             }
 
             const contactHtml = contactTokens ? contactTokens.items.map(item => {
-                // Manually parse list item text to add icons
+                // 1. 直接取得 item 的文字內容
                 let text = item.text.trim();
 
-                // Icon Logic
+                // 2. 判斷圖示
                 let icon = '📌';
-                if (text.includes('988') || text.includes('Phone') || text.includes('電話')) icon = '📱';
-                if (text.includes('@') || text.includes('Email') || text.includes('mailto')) icon = '✉️';
-                if (text.includes('1990') || text.includes('Birthday') || text.includes('生日') || text.includes('DOB')) icon = '📅';
+                if (/988|Phone|電話/.test(text)) icon = '📱';
+                else if (/@|Email|mailto/.test(text)) icon = '✉️';
+                else if (/1990|Birthday|生日|DOB/.test(text)) icon = '📅';
+                else if (/Portfolio|作品集|Archive/.test(text)) icon = '📁';
+                else if (/SPEC/.test(text)) icon = '📄';
 
-                // Strip bold/strong labels if present
-                // Regex to remove "**Label**: " prefix
-                const cleanText = text.replace(/^\*\*.*?\*\*[:：]\s*/, '').replace(/<a/g, '<a class="hover:text-slate-800 transition-colors"');
+                // 3. 移除前面的標題 (例如 **作品集**: )
+                const cleanText = text.replace(/^\*\*.*?\*\*[:：]\s*/, '');
 
-                return `<span class="flex items-center gap-1.5"><span class="text-slate-900">${icon}</span> ${marked.parseInline(cleanText)}</span>`;
+                // 4. 檢查內容是否已經自帶 Emoji (例如：[📁 SPEC...])
+                if (/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}]|^\[[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}]/u.test(cleanText.trim())) {
+                    icon = '';
+                }
+
+                // 5. 使用 marked.parseInline 讓 Markdown 的連結格式 [文字](URL) 轉為 HTML
+                const renderedText = marked.parseInline(cleanText)
+                    .replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" class="hover:text-slate-800 transition-colors underline decoration-slate-300" ');
+
+                return `<span class="flex items-center gap-1.5"><span class="text-slate-900">${icon}</span> ${renderedText}</span>`;
             }).join('\n') : '';
 
 
@@ -132,14 +148,33 @@ async function build() {
 
             // --- Name Processing ---
             let primaryName = fullTitle;
-            let secondaryName = '';
+            let legalName = '';
+            let nickName = '';
 
             if (langCode === 'zh') {
-                const nameParts = fullTitle.split(/\s+(.+)/);
-                primaryName = nameParts[0];
-                secondaryName = nameParts[1] || '';
-                if (secondaryName.includes(') ')) {
-                    secondaryName = secondaryName.replace(') ', ')&nbsp;&nbsp;&nbsp;');
+                // Split "# 劉胤檀 (Ying-Tan Liu) Anton Liu"
+                const match = fullTitle.match(/^(.*?)\s+(\(.*?)\)\s+(.*)$/);
+                if (match) {
+                    primaryName = match[1];
+                    legalName = match[2] + ')';
+                    nickName = match[3];
+                } else {
+                    // Fallback
+                    const nameParts = fullTitle.split(/\s+(.+)/);
+                    primaryName = nameParts[0];
+                    nickName = nameParts[1] || '';
+                }
+            } else {
+                // Split "# Ying-Tan Liu (Anton)"
+                const match = fullTitle.match(/^(.*?)\s+\((.*?)\)$/);
+                if (match) {
+                    primaryName = match[1];
+                    nickName = match[2];
+                    if (nickName.startsWith('(') && nickName.endsWith(')')) {
+                        // Stripped in regex group? No, match[2] is inside.
+                    } else {
+                        nickName = `(${nickName})`;
+                    }
                 }
             }
 
@@ -148,7 +183,8 @@ async function build() {
 
             return {
                 primaryName,
-                secondaryName,
+                legalName,
+                nickName,
                 summaryContent,
                 contactHtml,
                 traitsContent: traitsHtml,
@@ -191,6 +227,21 @@ async function build() {
         function renderBody(data, lang, isHidden) {
             if (!data) return '';
 
+            // Construct name HTML based on components
+            let nameHtml = '';
+            if (lang === 'zh') {
+                nameHtml = `
+                    ${data.primaryName}
+                    ${data.legalName ? ` <span class="text-2xl font-light text-slate-400 inline-block whitespace-nowrap align-middle lg:ml-1">${data.legalName}</span>` : ''}
+                    ${data.nickName ? `<br class="lg:hidden print:hidden"><span class="text-2xl font-light text-slate-400 align-middle lg:ml-8 print:ml-4">${data.nickName}</span>` : ''}
+                `;
+            } else {
+                nameHtml = `
+                    ${data.primaryName}
+                    ${data.nickName ? ` <span class="text-2xl font-light text-slate-400 align-middle lg:ml-8 print:ml-4">${data.nickName}</span>` : ''}
+                `;
+            }
+
             return `
             <div id="content-${lang}" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 ${isHidden ? 'hidden opacity-0' : 'opacity-100'}">
 
@@ -202,8 +253,7 @@ async function build() {
                     <!-- Mobile Order: 1 -->
                     <header class="order-1 lg:order-none col-span-1 ${data.marginClass} lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:px-4 print:py-4 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
-                            ${data.primaryName}
-                            ${data.secondaryName ? `<br class="hidden print:block"><span class="text-2xl font-light text-slate-400 align-middle">${data.secondaryName}</span>` : ''}
+                            ${nameHtml}
                         </h1>
                         
                         <!-- Separator Line (Restored) -->
@@ -213,7 +263,7 @@ async function build() {
                             ${data.summaryContent}
                         </div>
 
-                        <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-slate-500 mt-auto">
+                        <div class="grid grid-cols-2 gap-x-4 gap-y-2 lg:flex lg:flex-wrap lg:gap-x-6 lg:gap-y-2 text-sm font-medium text-slate-500 mt-auto">
                             ${data.contactHtml}
                         </div>
                     </header>

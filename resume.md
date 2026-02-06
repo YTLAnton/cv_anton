@@ -10,6 +10,7 @@
 - **電話**: +886 988 260 518
 - **Email**: [play911419@gmail.com](mailto:play911419@gmail.com)
 - **生日**: 1990-05-18
+- **作品集**: [📁 SPEC 作品集](https://drive.google.com/drive/folders/17gDviWNyXriZaaRw9m95mDCzMc1zSdGj?usp=sharing)
 
 ---
 
@@ -49,7 +50,7 @@
 
 ## 工作經歷
 
-### 產品經理 | 順為信息
+### 產品經理 | 順為信息 [📄 SPEC 作品](https://drive.google.com/drive/folders/19gxjmY17MP6XazYhs6U_KrJiRNLdRMym?usp=drive_link)
 *2024/03 ~ 至今*
 - **專案簡介**: 影音社交通訊軟體。
 - **關鍵責任**:
@@ -64,7 +65,7 @@
   - **全球化與多市場佈局**：建立多語系框架，負責印度版開發與三方登錄整合。
   - **影音通訊功能升級**：語音/檔案訊息傳輸功能。
 
-### 專案經理 | 我愛數位科技
+### 專案經理 | 我愛數位科技 [📄 SPEC 作品](https://drive.google.com/drive/folders/1UQYY6M-sHbzn8NvVxQ22ktsh3qfwQS6j?usp=sharing)
 *2022/06 ~ 2023/12*
 - **專案簡介**: 區塊鏈影音分享平台。
 - **關鍵責任**:
@@ -75,7 +76,7 @@
   - **從 0 到 1**：**2 個月**完成產品開發，上線後持續迭代。
   - **建立敏捷開發流程**：協調 **11 人團隊**，建立並實施敏捷開發流程，縮短交付週期並實現價值的持續產出。
 
-### 產品經理 | 天堂遊戲
+### 產品經理 | 天堂遊戲 [📄 SPEC 作品](https://drive.google.com/drive/folders/1AxxQoibuQi69h_BCw19_dfmWuy7MhXCd?usp=sharing)
 *2021/03 ~ 2022/06*
 - **專案簡介**: 線上娛樂平台。
 - **關鍵責任**:
@@ -86,7 +87,7 @@
   - **架構設計**：規劃 **多語系框架** 並制定 **Key 命名規則**。
   - **線上維運**：處理正式環境各狀況，確保平台穩定服務。
 
-### 產品經理 | 彩虹科技
+### 產品經理 | 彩虹科技 [📄 SPEC 作品](https://drive.google.com/drive/folders/1_Vh7ZncdjpK5LlQsoAqB9h5HLWYL1pTg?usp=sharing)
 *2019/11 ~ 2021/01*
 - **專案簡介**: 國際德州撲克平台。
 - **關鍵責任**:
@@ -151,6 +152,7 @@
 - **Phone**: +886 988 260 518
 - **Email**: [play911419@gmail.com](mailto:play911419@gmail.com)
 - **DOB**: 1990-05-18
+- **Portfolio**: [📁 SPEC Archive](https://drive.google.com/drive/folders/17gDviWNyXriZaaRw9m95mDCzMc1zSdGj?usp=sharing)
 
 ---
 
@@ -190,7 +192,7 @@
 
 ## Work Experience
 
-### Product Manager | Shunwei Information
+### Product Manager | Shunwei Information [📄 SPEC Work](https://drive.google.com/drive/folders/19gxjmY17MP6XazYhs6U_KrJiRNLdRMym?usp=drive_link)
 *2024/03 ~ Present*
 - **Project**: Video Social Communication App.
 - **Key Responsibilities**:
@@ -205,7 +207,7 @@
   - **Globalization & Infrastructure**: Built multi-language framework; managed custom development for India IM version and 3rd-party login integration.
   - **Video/Audio Features**: Voice/File message transmission features.
 
-### Project Manager | 4i Tech
+### Project Manager | 4i Tech [📄 SPEC Work](https://drive.google.com/drive/folders/1UQYY6M-sHbzn8NvVxQ22ktsh3qfwQS6j?usp=sharing)
 *2022/06 ~ 2023/12*
 - **Project**: Blockchain Video Sharing Platform.
 - **Key Responsibilities**:
@@ -216,7 +218,7 @@
   - **Rapid 0-to-1 Launch**: Completed product development and launch within **2 months**, followed by continuous iterations.
   - **Agile Process Implementation**: Led an **11-person team** to establish Agile processes, enhancing delivery predictability.
 
-### Product Manager | Paradise-Soft
+### Product Manager | Paradise-Soft [📄 SPEC Work](https://drive.google.com/drive/folders/1AxxQoibuQi69h_BCw19_dfmWuy7MhXCd?usp=sharing)
 *2021/03 ~ 2022/06*
 - **Project**: Online Entertainment Platform Development.
 - **Key Responsibilities**:
@@ -227,7 +229,7 @@
   - **Architectural Design**: Planned **Multi-language Framework** and established **Key Naming Conventions**.
   - **Live Operations**: Resolved production issues to ensure platform stability.
 
-### Product Manager | Rainbow Tech Limited
+### Product Manager | Rainbow Tech Limited [📄 SPEC Work](https://drive.google.com/drive/folders/1_Vh7ZncdjpK5LlQsoAqB9h5HLWYL1pTg?usp=sharing)
 *2019/11 ~ 2021/01*
 - **Project**: Texas Hold'em Platform Globalization.
 - **Key Responsibilities**:

@@ -49,8 +49,15 @@
 | **Traits** | Trait, 特質 | 側邊欄特質標籤 |
 
 ### 3.3 自動化處理 (Auto-Processing)
+### 3.3 自動化處理 (Auto-Processing)
 -   **Icon Injection**: 自動偵測聯絡資訊中的關鍵字 (Phone/Email/Birthday/Github) 並注入對應 Emoji 或 Icon。
--   **Link Security**: 所有外部連結自動添加 hover 樣式。
+    -   **防重複機制**: 若 Markdown 中已包含 Emoji，則不會重複注入。
+    -   **標籤移除**: 自動移除如 `**作品集**:` 等前綴標籤，僅保留 Icon 與連結。
+-   **Link Behavior**: 所有 Markdown 生成的連結自動注入 `target="_blank"` 與 `rel="noopener noreferrer"`。
+    -   **SPEC Link Styling**: 針對工作經歷中的 SPEC 作品連結，自動套用 `text-sm`, `font-normal`, `opacity-80` 樣式以降低視覺干擾。
+-   **Name Parsing**:
+    -   **Chinese**: 自動拆解為「中文本名」、「英文法律本名」、「英文暱稱」。
+    -   **English**: 自動拆解為「英文法律本名」、「英文暱稱」。
 
 ---
 
@@ -60,8 +67,11 @@
 採用 **Mobile-First** 策略，利用 Tailwind Grid 系統實現響應式佈局。
 
 #### Breakpoints
+#### Breakpoints
 -   **Mobile (< 1024px)**: 單欄流式佈局 (Stack Layout)
-    -   順序：Header -> Traits -> Skills -> Work/Education
+    -   **Header Name**: 中文本名與英文法律本名強制同行 (`whitespace-nowrap`)，英文暱稱強制換行顯示。
+    -   **Contact Info**: 採用 **Grid 2x2** 佈局，整齊排列電話、Email、生日、作品集。
+    -   **Section Order**: Header -> Traits -> Skills -> Work/Education
     -   透過 CSS `order-*` 屬產調整視覺順序。
 -   **Desktop (>= 1024px)**: 12欄 Grid 佈局 (Two-Column)
     -   **Left Column (col-span-8)**: 姓名、摘要、聯絡資訊 (Header)、工作經歷、學歷。
