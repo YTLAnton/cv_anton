@@ -149,7 +149,7 @@ async function build() {
 
                     <!-- HEADER LEFT (Name/Summary/Contact) -->
                     <!-- Mobile Order: 1 -->
-                    <header class="order-1 lg:order-none col-span-1 ${data.marginClass} lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:${data.marginClass} print:pb-4 print:pr-8 bg-white lg:bg-transparent">
+                    <header class="order-1 lg:order-none col-span-1 ${data.marginClass} lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:px-4 print:py-4 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
                             ${data.primaryName}
                             ${data.secondaryName ? `<br class="hidden print:block"><span class="text-xl font-light text-slate-400 align-middle">${data.secondaryName}</span>` : ''}
@@ -165,14 +165,14 @@ async function build() {
 
                     <!-- BODY LEFT (Work & Education) -->
                     <!-- Mobile Order: 4 -->
-                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:${data.marginClass} lg:pr-8 lg:pt-8 flex-grow print:${data.marginClass} print:pr-8 print:pt-8 bg-white lg:bg-transparent">
+                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:${data.marginClass} lg:pr-8 lg:pt-8 flex-grow print:px-4 print:pt-8 bg-white lg:bg-transparent">
                         <section>
                             <div class="flex items-center gap-3 mb-8 print:mb-4">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">${labels[lang].work}</h2>
                             </div>
 
-                            <div class="timeline-line pl-8 markdown-content">
+                            <div class="timeline-line pl-8 markdown-content print:pl-4">
                                 ${data.workContent}
                             </div>
                         </section>
@@ -183,7 +183,7 @@ async function build() {
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">${labels[lang].education}</h2>
                             </div>
 
-                            <div class="timeline-line pl-8 markdown-content">
+                            <div class="timeline-line pl-8 markdown-content print:pl-4">
                                 ${data.educationContent}
                             </div>
                         </section>
@@ -196,7 +196,7 @@ async function build() {
 
                     <!-- HEADER RIGHT (Traits) -->
                     <!-- Mobile Order: 2 -->
-                    <div class="order-2 lg:order-none col-span-1 p-6 lg:${data.marginClass} lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:${data.marginClass} print:pl-8 print:pt-6 print:pb-4">
+                    <div class="order-2 lg:order-none col-span-1 p-6 lg:${data.marginClass} lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:px-4 print:py-4">
                         <!-- Traits -->
                         <!-- Mobile: Grid 2 Cols, Desktop: Flex Col -->
                         <div class="grid grid-cols-2 gap-3 lg:flex lg:flex-col items-start traits-list print:flex print:flex-col">
@@ -206,7 +206,7 @@ async function build() {
 
                     <!-- BODY RIGHT (Skills) -->
                     <!-- Mobile Order: 3 -->
-                    <div class="order-3 lg:order-none col-span-1 p-6 lg:${data.marginClass} lg:pl-8 lg:pt-8 flex-grow print:${data.marginClass} print:pl-8 print:pt-4 bg-slate-50 lg:bg-transparent">
+                    <div class="order-3 lg:order-none col-span-1 p-6 lg:${data.marginClass} lg:pl-8 lg:pt-8 flex-grow print:px-4 print:pt-4 bg-slate-50 lg:bg-transparent">
                         <section class="mb-12 print:mb-6">
                             <div class="flex items-center gap-3 mb-6 print:mb-3">
                                 <div class="w-6 h-1 bg-slate-400"></div>
@@ -266,7 +266,7 @@ async function build() {
                                                 /* Print Optimization */
                                                 @media print {
                                                     @page {
-                                                        margin: 0; /* Set to 0 to avoid additive margins with container padding */
+                                                        margin: 15mm; /* Standard print margin */
                                                         size: A4;
                                                     }
                                                     body {
@@ -304,7 +304,7 @@ async function build() {
                                                 }
                                             </style>
                                         </head>
-                                        <body class="py-0 px-0 print:py-0 print:px-0">
+                                        <body class="py-0 px-0 print:py-0 print:px-0 print:tracking-tight">
                                             <div class="cv-container w-full mx-auto bg-white shadow-xl relative flex flex-col min-h-screen lg:min-h-[1123px] print:min-h-0 print:h-auto">
 
                                                 <!-- Language Content Blocks -->

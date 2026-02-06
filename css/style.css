@@ -119,8 +119,6 @@ body {
         height: auto !important;
         min-height: 0 !important;
         background: white;
-        padding: 0;
-        margin: 0;
         overflow: visible !important;
     }
 
@@ -131,12 +129,20 @@ body {
     }
 
     /* Page Break Controls */
-    section,
-    .markdown-content li,
-    .markdown-content p {
+    /* Page Break Controls */
+    section {
         break-inside: auto;
-        orphans: 1;
-        widows: 1;
+    }
+
+    .markdown-content li {
+        break-inside: auto;
+    }
+
+    /* Only prevent breaking inside list items that don't contain sub-lists (leaf nodes) */
+    /* This ensures large nested lists can flow across pages, but individual bullets stay intact */
+    .markdown-content li:not(:has(ul)),
+    .markdown-content p {
+        break-inside: avoid;
     }
 
     h2,
