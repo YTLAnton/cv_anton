@@ -81,6 +81,17 @@ async function build() {
                     });
             };
 
+            // Helper to find section by fuzzy name
+            const findSectionHtml = (keywords) => {
+                const key = Object.keys(sections).find(k => {
+                    const lowerK = k.toLowerCase();
+                    // Skip Meta section for body rendering
+                    if (lowerK.includes('meta')) return false;
+                    return keywords.some(w => lowerK.includes(w.toLowerCase()));
+                });
+                return key ? renderTokens(sections[key]) : '';
+            };
+
             // 3. Extract Specific Sections (Robust Matching)
 
             // --- Header Analysis (Name, Title, Contact) ---
@@ -93,6 +104,23 @@ async function build() {
             // Find Blockquote for Summary
             const summaryToken = headerTokens.find(t => t.type === 'blockquote');
             const summaryContent = summaryToken ? marked.parser(summaryToken.tokens) : '';
+
+            // --- Meta Section Analysis (New) ---
+            const metaHtml = findSectionHtml(['Meta']); // Although we don't render it directly, we parse it
+            const metaTokens = sections['Meta'] || [];
+            let ogTitle = "Anton Liu - Resume";
+            let ogDesc = "Interactive Bilingual Resume";
+            let ogImage = "";
+
+            const metaList = metaTokens.find(t => t.type === 'list');
+            if (metaList) {
+                metaList.items.forEach(item => {
+                    const text = item.text;
+                    if (text.includes('OG_Title')) ogTitle = text.replace(/^\*\*OG_Title\*\*:\s*/, '').trim();
+                    if (text.includes('OG_Description')) ogDesc = text.replace(/^\*\*OG_Description\*\*:\s*/, '').trim();
+                    if (text.includes('OG_Image')) ogImage = text.replace(/^\*\*OG_Image\*\*:\s*/, '').trim();
+                });
+            }
 
             // Find Contact Info (Assume it's the first List in 'header' or 'Contact'/'聯絡資訊' section)
             // Strategy: Look in 'header' first, then look for explicit 'Contact' related sections
@@ -134,11 +162,9 @@ async function build() {
 
             // --- Section Analysis ---
 
-            // Helper to find section by fuzzy name
-            const findSectionHtml = (keywords) => {
-                const key = Object.keys(sections).find(k => keywords.some(w => k.toLowerCase().includes(w.toLowerCase())));
-                return key ? renderTokens(sections[key]) : '';
-            };
+
+            // --- Section Analysis ---
+
 
             const traitsHtml = findSectionHtml(['Trait', '特質']);
             const skillsHtml = findSectionHtml(['Skill', '技能', '專業']);
@@ -191,7 +217,10 @@ async function build() {
                 skillsContent: skillsHtml,
                 workContent: workHtml,
                 educationContent: educationHtml,
-                marginClass
+                marginClass,
+                ogTitle,
+                ogDesc,
+                ogImage
             };
         }
 
@@ -333,6 +362,15 @@ async function build() {
                             <meta charset="UTF-8">
                                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                     <title>${zhData.primaryName} - CV</title>
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="${zhData.ogTitle}" />
+    <meta property="og:description" content="${zhData.ogDesc}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ytlanton.github.io/cv_yingtanliu/" />
+    <meta property="og:site_name" content="${zhData.primaryName}'s Resume" />
+    <meta property="og:image" content="${zhData.ogImage}" />
+
                                     <script src="https://cdn.tailwindcss.com"></script>
                                     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
                                         <link rel="stylesheet" href="./css/style.css">
