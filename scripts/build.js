@@ -92,8 +92,9 @@ async function build() {
                 if (text.includes('1990') || text.includes('Birthday') || text.includes('生日') || text.includes('DOB')) icon = '📅';
 
                 // Strip bolding ** key ** if present for cleaner icon pairing?
-                // The original had explicit spans. Let's wrap raw text.
-                return `<span class="flex items-center gap-1.5"><span class="text-slate-900">${icon}</span> ${text}</span>`;
+                // Strip label (<strong>Key</strong>: ) to keep only value
+                const cleanText = text.replace(/<strong>.*?<\/strong>:?\s*/, '');
+                return `<span class="flex items-center gap-1.5"><span class="text-slate-900">${icon}</span> ${cleanText}</span>`;
             }).join('\n');
 
 
@@ -136,57 +137,73 @@ async function build() {
 
             return `
             <div id="content-${lang}" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 ${isHidden ? 'hidden opacity-0' : 'opacity-100'} print:grid-cols-12">
-                
+
                 <!-- LEFT COLUMN (Main Content): Col-8 -->
-                <div class="col-span-12 lg:col-span-8 flex flex-col print:col-span-8">
-                    
-                    <!-- HEADER LEFT -->
-                    <header class="p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8">
+                <!-- Use 'contents' for mobile to allow children to be part of the main grid, enabling reordering -->
+                <div class="contents lg:block lg:col-span-8 lg:flex lg:flex-col print:col-span-8 print:block">
+
+                    <!-- HEADER LEFT (Name/Summary/Contact) -->
+                    <!-- Mobile Order: 1 -->
+                    <header class="order-1 lg:order-none col-span-1 p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
-                            ${data.primaryName} 
+                            ${data.primaryName}
                             ${data.secondaryName ? `<br class="hidden print:block"><span class="text-xl font-light text-slate-400 align-middle">${data.secondaryName}</span>` : ''}
                         </h1>
                         <div class="text-base text-slate-600 leading-relaxed mb-6 mt-4 border-l-4 border-slate-800 pl-4 py-1 italic bg-slate-50 rounded-r">
                             ${data.summaryContent}
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-slate-500 mt-auto">
                             ${data.contactHtml}
                         </div>
                     </header>
-    
-                    <!-- BODY LEFT (Work) -->
-                    <div class="p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8">
+
+                    <!-- BODY LEFT (Work & Education) -->
+                    <!-- Mobile Order: 4 -->
+                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8 bg-white lg:bg-transparent">
                         <section>
                             <div class="flex items-center gap-3 mb-8">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">${labels[lang].work}</h2>
                             </div>
-                            
+
                             <div class="timeline-line pl-8 markdown-content">
                                 ${data.workContent}
                             </div>
                         </section>
+
+                        <section class="mt-12">
+                            <div class="flex items-center gap-3 mb-8">
+                                <div class="w-8 h-1 bg-slate-800"></div>
+                                <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">${labels[lang].education}</h2>
+                            </div>
+
+                            <div class="timeline-line pl-8 markdown-content">
+                                ${data.educationContent}
+                            </div>
+                        </section>
                     </div>
                 </div>
-    
+
                 <!-- RIGHT COLUMN (Sidebar): Col-4 -->
-                <div class="col-span-12 lg:col-span-4 bg-slate-50 border-t lg:border-t-0 lg:border-l border-slate-100 flex flex-col print:col-span-4 print:border-t-0 print:border-l">
-                    
+                <!-- Use 'contents' for mobile reordering -->
+                <div class="contents lg:block lg:col-span-4 lg:bg-slate-50 lg:border-l lg:border-slate-100 lg:flex lg:flex-col print:col-span-4 print:border-l print:block">
+
                     <!-- HEADER RIGHT (Traits) -->
-                    <div class="p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
-                            <!-- Traits (Using raw content from MD, assuming it's a list) -->
-                            <!-- Re-styling check: Original used manual map. 
-                                 For i18n, we should parse the UL/LI from traitsContent and style it. -->
-                            <div class="flex flex-col items-start gap-3 traits-list">
-                                ${data.traitsContent.replace(/<li>/g, '<div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest">').replace(/<\/li>/g, '</span></div>').replace(/<ul>|<\/ul>/g, '')}
-                            </div>
+                    <!-- Mobile Order: 2 -->
+                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
+                        <!-- Traits -->
+                        <!-- Mobile: Grid 2 Cols, Desktop: Flex Col -->
+                        <div class="grid grid-cols-2 gap-3 lg:flex lg:flex-col items-start traits-list print:flex print:flex-col">
+                            ${data.traitsContent.replace(/<li>/g, '<div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest">').replace(/<\/li>/g, '</span></div>').replace(/<ul>|<\/ul>/g, '')}
+                        </div>
                     </div>
-    
-                    <!-- BODY RIGHT (Skills & Edu) -->
-                    <div class="p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8">
-                            <section class="mb-12">
-                                <div class="flex items-center gap-3 mb-6">
+
+                    <!-- BODY RIGHT (Skills) -->
+                    <!-- Mobile Order: 3 -->
+                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8 bg-slate-50 lg:bg-transparent">
+                        <section class="mb-12">
+                            <div class="flex items-center gap-3 mb-6">
                                 <div class="w-6 h-1 bg-slate-400"></div>
                                 <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="skills">${labels[lang].skills}</h2>
                             </div>
@@ -194,66 +211,93 @@ async function build() {
                                 ${data.skillsContent}
                             </div>
                         </section>
-    
-                        <section>
-                            <div class="flex items-center gap-3 mb-6">
-                                <div class="w-6 h-1 bg-slate-400"></div>
-                                <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="education">${labels[lang].education}</h2>
-                            </div>
-                            <div class="markdown-content sidebar-content">
-                                ${data.educationContent}
-                            </div>
-                        </section>
-                    </div>
+
+                    </section>
                 </div>
-            </div>`;
+            </div>
+            </div > `;
         }
 
         const template = `
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${zhData.primaryName} - CV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
-    <style>
+                        <head>
+                            <meta charset="UTF-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>${zhData.primaryName} - CV</title>
+                                    <script src="https://cdn.tailwindcss.com"></script>
+                                    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+                                        <link rel="stylesheet" href="./css/style.css">
+                                            <style>
         /* Fade transition support */
-        .lang-section { transition: opacity 0.3s ease-in-out; }
-        .hidden { display: none; }
-        .opacity-0 { opacity: 0; }
-        .opacity-100 { opacity: 1; }
-    </style>
-</head>
-<body class="py-0 px-0 lg:py-10 lg:px-4 print:py-0 print:px-0">
-    <div class="cv-container w-full max-w-5xl mx-auto bg-white shadow-xl relative overflow-hidden flex flex-col min-h-screen lg:min-h-[1123px]">
-        
-        <!-- Language Content Blocks -->
-        ${renderBody(zhData, 'zh', false)}
-        ${enData ? renderBody(enData, 'en', true) : ''}
+                                                .lang-section {transition: opacity 0.3s ease-in-out; }
+                                                .hidden {display: none; }
+                                                .opacity-0 {opacity: 0; }
+                                                .opacity-100 {opacity: 1; }
 
-        <!-- Clean Footer -->
-        <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full absolute bottom-0 z-20"></footer>
-    </div>
+                                                /* Print Optimization */
+                                                @media print {
+                                                    @page {
+                                                        margin: 1.5cm; /* CSS-only way to have margins on every page */
+                                                        size: auto;
+                                                    }
+                                                    body {
+                                                        margin: 0 !important; /* Reset body margin to avoid doubling */
+                                                        padding: 0;
+                                                        background: white !important;
+                                                    }
+                                                    .cv-container {
+                                                        box-shadow: none !important;
+                                                        min-height: auto !important;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;
+                                                        width: 100% !important;
+                                                        max-width: 100% !important;
+                                                        print-color-adjust: exact;
+                                                        -webkit-print-color-adjust: exact;
+                                                    }
+                                                    /* Force hide non-visible elements to maximize ATS safety */
+                                                    .no-print, .hidden, .opacity-0 {
+                                                        display: none !important;
+                                                        opacity: 0 !important;
+                                                        height: 0 !important;
+                                                        width: 0 !important;
+                                                        overflow: hidden !important;
+                                                    }
+                                                    /* Ensure text contrast in print */
+                                                    h1, h2, h3, p, li {
+                                                        color: #000 !important;
+                                                    }
+                                                }
+                                            </style>
+                                        </head>
+                                        <body class="py-0 px-0 lg:py-10 lg:px-4 print:py-0 print:px-0">
+                                            <div class="cv-container w-full max-w-5xl mx-auto bg-white shadow-xl relative overflow-hidden flex flex-col min-h-screen lg:min-h-[1123px]">
 
-    <!-- UI Controls Container -->
-    <div class="fixed bottom-8 right-8 no-print print:hidden flex flex-col gap-4">
-        
-        <!-- Language Switcher (Injected via JS, but placeholder here for structure) -->
-        <div id="i18n-controls"></div>
+                                                <!-- Language Content Blocks -->
+                                                ${renderBody(zhData, 'zh', false)}
+                                                ${enData ? renderBody(enData, 'en', true) : ''}
 
-        <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-105 active:scale-95" title="Print / Save PDF">
-            <span class="text-2xl">🖨️</span>
-        </button>
-    </div>
+                                                <!-- Clean Footer -->
+                                                <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full absolute bottom-0 z-20"></footer>
+                                            </div>
 
-    <!-- Scripts -->
-    <script src="./js/i18n.js"></script>
-</body>
-</html>
-        `;
+                                            <!-- UI Controls Container -->
+                                            <div class="fixed bottom-8 right-8 no-print print:hidden flex flex-col gap-4">
+
+                                                <!-- Language Switcher (Injected via JS, but placeholder here for structure) -->
+                                                <div id="i18n-controls"></div>
+
+                                                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-105 active:scale-95" title="Print / Save PDF">
+                                                    <span class="text-2xl">🖨️</span>
+                                                </button>
+                                            </div>
+
+                                            <!-- Scripts -->
+                                            <script src="./js/i18n.js"></script>
+                                        </body>
+                                    </html>
+                                    `;
 
         await fs.writeFile(outputPath, template);
         console.log('Build successful: index.html updated with Dual Language Support.');

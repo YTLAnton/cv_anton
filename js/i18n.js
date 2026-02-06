@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Wait for fade out, then swap display and fade in incoming
         setTimeout(() => {
+            window.scrollTo(0, 0);
             outgoing.classList.add('hidden');
             incoming.classList.remove('hidden');
 

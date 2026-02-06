@@ -1,116 +1,155 @@
 
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>劉胤檀 - CV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
-    <style>
+                        <head>
+                            <meta charset="UTF-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                    <title>劉胤檀 - CV</title>
+                                    <script src="https://cdn.tailwindcss.com"></script>
+                                    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+                                        <link rel="stylesheet" href="./css/style.css">
+                                            <style>
         /* Fade transition support */
-        .lang-section { transition: opacity 0.3s ease-in-out; }
-        .hidden { display: none; }
-        .opacity-0 { opacity: 0; }
-        .opacity-100 { opacity: 1; }
-    </style>
-</head>
-<body class="py-0 px-0 lg:py-10 lg:px-4 print:py-0 print:px-0">
-    <div class="cv-container w-full max-w-5xl mx-auto bg-white shadow-xl relative overflow-hidden flex flex-col min-h-screen lg:min-h-[1123px]">
-        
-        <!-- Language Content Blocks -->
-        
+                                                .lang-section {transition: opacity 0.3s ease-in-out; }
+                                                .hidden {display: none; }
+                                                .opacity-0 {opacity: 0; }
+                                                .opacity-100 {opacity: 1; }
+
+                                                /* Print Optimization */
+                                                @media print {
+                                                    @page {
+                                                        margin: 1.5cm; /* CSS-only way to have margins on every page */
+                                                        size: auto;
+                                                    }
+                                                    body {
+                                                        margin: 0 !important; /* Reset body margin to avoid doubling */
+                                                        padding: 0;
+                                                        background: white !important;
+                                                    }
+                                                    .cv-container {
+                                                        box-shadow: none !important;
+                                                        min-height: auto !important;
+                                                        margin: 0 !important;
+                                                        padding: 0 !important;
+                                                        width: 100% !important;
+                                                        max-width: 100% !important;
+                                                        print-color-adjust: exact;
+                                                        -webkit-print-color-adjust: exact;
+                                                    }
+                                                    /* Force hide non-visible elements to maximize ATS safety */
+                                                    .no-print, .hidden, .opacity-0 {
+                                                        display: none !important;
+                                                        opacity: 0 !important;
+                                                        height: 0 !important;
+                                                        width: 0 !important;
+                                                        overflow: hidden !important;
+                                                    }
+                                                    /* Ensure text contrast in print */
+                                                    h1, h2, h3, p, li {
+                                                        color: #000 !important;
+                                                    }
+                                                }
+                                            </style>
+                                        </head>
+                                        <body class="py-0 px-0 lg:py-10 lg:px-4 print:py-0 print:px-0">
+                                            <div class="cv-container w-full max-w-5xl mx-auto bg-white shadow-xl relative overflow-hidden flex flex-col min-h-screen lg:min-h-[1123px]">
+
+                                                <!-- Language Content Blocks -->
+                                                
             <div id="content-zh" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 opacity-100 print:grid-cols-12">
-                
+
                 <!-- LEFT COLUMN (Main Content): Col-8 -->
-                <div class="col-span-12 lg:col-span-8 flex flex-col print:col-span-8">
-                    
-                    <!-- HEADER LEFT -->
-                    <header class="p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8">
+                <!-- Use 'contents' for mobile to allow children to be part of the main grid, enabling reordering -->
+                <div class="contents lg:block lg:col-span-8 lg:flex lg:flex-col print:col-span-8 print:block">
+
+                    <!-- HEADER LEFT (Name/Summary/Contact) -->
+                    <!-- Mobile Order: 1 -->
+                    <header class="order-1 lg:order-none col-span-1 p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
-                            劉胤檀 
+                            劉胤檀
                             <br class="hidden print:block"><span class="text-xl font-light text-slate-400 align-middle">(Ying-Tan Liu)&nbsp;&nbsp;&nbsp;Anton Liu</span>
                         </h1>
                         <div class="text-base text-slate-600 leading-relaxed mb-6 mt-4 border-l-4 border-slate-800 pl-4 py-1 italic bg-slate-50 rounded-r">
                             
-<p><strong>資深產品經理 | 10年+ 社交、區塊鏈、遊戲與娛樂產業經驗</strong></p>
-<p>具備從 0 到 1 的產品開發經驗，可帶領十人以上的跨職能團隊。穩定驅動 <strong>全生命週期管理</strong>，從需求溝通、需求收斂、規格文檔撰寫，到研發時程掌控、驗收測試與產品交付上線。</p>
+<p><strong>資深產品經理 | 10年+ 社交、遊戲與娛樂產業經驗</strong></p>
+<p>具備從 0 到 1 的產品開發經驗，可帶領十人以上的跨職能團隊。穩定驅動 <strong>全生命週期管理</strong>，從需求溝通、需求收斂、規格文檔撰寫，到訂定研發時程、驗收測試與產品交付上線。</p>
 
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-slate-500 mt-auto">
-                            <span class="flex items-center gap-1.5"><span class="text-slate-900">📱</span> <strong>電話</strong>: +886 988 260 518</span>
-<span class="flex items-center gap-1.5"><span class="text-slate-900">✉️</span> <strong>Email</strong>: <a href="mailto:YTAnton@outlook.com">YTAnton@outlook.com</a></span>
-<span class="flex items-center gap-1.5"><span class="text-slate-900">📅</span> <strong>生日</strong>: 1990-05-18</span>
+                            <span class="flex items-center gap-1.5"><span class="text-slate-900">📱</span> +886 988 260 518</span>
+<span class="flex items-center gap-1.5"><span class="text-slate-900">✉️</span> <a href="mailto:play911419@gmail.com">play911419@gmail.com</a></span>
+<span class="flex items-center gap-1.5"><span class="text-slate-900">📅</span> 1990-05-18</span>
                         </div>
                     </header>
-    
-                    <!-- BODY LEFT (Work) -->
-                    <div class="p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8">
+
+                    <!-- BODY LEFT (Work & Education) -->
+                    <!-- Mobile Order: 4 -->
+                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8 bg-white lg:bg-transparent">
                         <section>
                             <div class="flex items-center gap-3 mb-8">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">Work Experience</h2>
                             </div>
-                            
+
                             <div class="timeline-line pl-8 markdown-content">
                                 
 <h3>產品經理 | 順為信息有限公司</h3>
 <p><em>2024/03 ~ 至今</em></p>
 <ul>
-<li><strong>專案簡介</strong>: 負責影音社交通訊軟體。</li>
+<li><strong>專案簡介</strong>: 影音社交通訊軟體。</li>
 <li><strong>關鍵責任</strong>:<ul>
-<li>與 CEO 及客戶進行需求訪談，精準轉化業務邏輯。</li>
-<li>規劃前後台功能系統及 UI/UX。</li>
-<li>定期技術研討，優化團隊開發效率。</li>
+<li>與主管及客戶進行需求訪談，轉化業務邏輯。</li>
+<li>規劃前後台系統功能。</li>
+<li>協調跨部門合作與時程控管。</li>
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
-<li><strong>AI 效能工作流導入</strong>：建立 <strong>輔助開發流程 (Agentic Workflow)</strong>，顯著提升文件產出的<strong>精準度與跨部門對齊效率</strong>，降低溝通成本。</li>
-<li><strong>社群生態系從 0 到 1 構建 (Social Ecosystem)</strong>：主導影音社群 P1-P6 階段開發，涵蓋內容發布、互動系統、自動/媒體審核、數據監控及安全舉報體系。</li>
-<li><strong>用戶增長與激勵體系優化 (Growth &amp; Incentives)</strong>：設計並優化紅包系統（包含自動領取、批量設定、打碼倍率邏輯）與邀請自動入群機制。</li>
-<li><strong>跨端體驗與訪客轉換 (mWeb &amp; UX)</strong>：實現 mWeb 深度社群化整合，優化訪客模式、靜音體驗及站外分享流。</li>
-<li><strong>全球化與多市場佈局 (Global &amp; Infrastructure)</strong>：建立多語系框架，負責印度版 IM 定製開發與三方登錄整合。</li>
-<li><strong>影音通訊功能升級</strong>：優化語音/檔案訊息傳輸與覓聊社群化功能。</li>
+<li><strong>AI 效能工作流導入</strong>：建立 <strong>輔助開發流程 (Agentic Workflow)</strong>，提升文件產出的<strong>精準度與跨部門對齊效率</strong>，降低溝通成本。</li>
+<li><strong>社群系統從 0 到 1 構建</strong>：在 <strong>6 個月</strong>完成 MVP 開發至上線，歷經多次核心版本迭代，涵蓋內容發布、互動系統、自動/媒體審核、數據監控。</li>
+<li><strong>用戶增長與激勵體系優化</strong>：優化紅包系統（包含自動領取、批量設定、打碼倍率）與邀請自動入群機制。</li>
+<li><strong>跨端體驗與訪客轉換</strong>：實現 mWeb 社群化整合，優化訪客模式及站外分享。</li>
+<li><strong>全球化與多市場佈局</strong>：建立多語系框架，負責印度版 IM 定製開發與三方登錄整合。</li>
+<li><strong>影音通訊功能升級</strong>：語音/檔案訊息傳輸功能。</li>
 </ul>
 </li>
 </ul>
 <h3>專案經理 | 我愛數位科技股份有限公司</h3>
 <p><em>2022/06 ~ 2023/12</em></p>
 <ul>
-<li><strong>專案簡介</strong>: 區塊鏈影音分享平台、NFT 平台。</li>
+<li><strong>專案簡介</strong>: 區塊鏈影音分享平台。</li>
 <li><strong>關鍵責任</strong>:<ul>
-<li><strong>具備撰寫全英文技術規格 (SPEC) 之職能</strong>，並與外籍開發團隊進行溝通。</li>
+<li>獨立撰寫全英文規格文件，確保技術細節精準傳遞。</li>
+<li>負責與美國客戶對接需求，協調多國籍開發團隊進行全英文專案開發。</li>
 <li>規劃並設計產品的前後端功能、系統及 UI/UX。</li>
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
-<li><strong>從 0 到 1</strong>：在 2 個月內完成產品開發並上線。</li>
-<li>帶領 <strong>11 人團隊</strong>，建立並實施敏捷開發流程。</li>
-<li>負責產品：區塊鏈影音平台、NFT 兌換與生產販售平台。</li>
+<li><strong>從 0 到 1</strong>：在 <strong>2 個月</strong>內完成產品開發並上線後持續迭代。</li>
+<li><strong>建立敏捷開發流程</strong>：協調 <strong>11 人團隊</strong>，建立並實施敏捷開發流程，提升迭代交付之可預測性。</li>
 </ul>
 </li>
 </ul>
 <h3>產品經理 | 天堂遊戲有限公司</h3>
 <p><em>2021/03 ~ 2022/06</em></p>
 <ul>
-<li><strong>專案簡介</strong>: 線上娛樂平台開發。</li>
+<li><strong>專案簡介</strong>: 線上娛樂平台。</li>
 <li><strong>關鍵責任</strong>:<ul>
-<li>與客戶及各部門進行需求訪談與溝通。</li>
-<li>研究、規劃與設計平台之前後端功能、系統以及 UI/UX。</li>
+<li>與客戶進行需求訪談與釐清。</li>
+<li>規劃與設計平台前後端功能、系統以及 UI/UX。</li>
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
-<li>負責模組：<strong>KYC 引導、二代報表、帳戶安全、金流相關需求</strong>。</li>
-<li>規劃並導入 <strong>虛擬貨幣出入款系統與流程</strong>。</li>
+<li><strong>虛擬貨幣金流</strong>：規劃 <strong>USDT 出入金</strong> 與 <strong>錢包綁定流程</strong>。</li>
+<li><strong>架構設計</strong>：規劃 <strong>多語系框架</strong> 並制定 <strong>Key 命名規則</strong>。</li>
+<li><strong>線上維運</strong>：處理正式環境各產線異常，確保平台服務穩定性。</li>
 </ul>
 </li>
 </ul>
 <h3>產品經理 | 馬紹爾群島商彩虹科技股份有限公司</h3>
 <p><em>2019/11 ~ 2021/01</em></p>
 <ul>
-<li><strong>專案簡介</strong>: 德州撲克平台全球化。</li>
+<li><strong>專案簡介</strong>: 國際德州撲克平台。</li>
 <li><strong>關鍵責任</strong>:<ul>
 <li>與部門主管及各部門進行需求訪談與溝通。</li>
 <li>研究、規劃與設計平台之前後端功能、系統以及 UI/UX。</li>
@@ -118,38 +157,44 @@
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
-<li><strong>國際合規</strong>: 通過 <strong>曼島政府法規</strong>，使平台全球合法化。</li>
-<li>負責功能：<strong>五星好評引導、自動返水、iOS IAP、郵箱驗證自動化、KYC 系統、MTT 排行榜、SpinUp、OFC 微級別、跑馬燈、金額縮寫</strong>等。</li>
+<li><strong>國際合規</strong>：取得 <strong>曼島政府牌照</strong>，實現平台全球合法化營運。</li>
+<li><strong>營運自動化</strong>：導入 <strong>自動返水、KYC 系統、郵箱驗證</strong>，大幅提升運維效率與帳戶安全性。</li>
+<li><strong>產品增長與變現</strong>：規劃 <strong>iOS IAP、MTT 排行榜與 SpinUp 新玩法</strong>，優化營收流程。</li>
 </ul>
 </li>
 </ul>
 <h3>遊戲企劃 | 存樂科技有限公司 (成都)</h3>
 <p><em>2016/03 ~ 2019/09</em></p>
 <ul>
+<li><strong>專案簡介</strong>: 獨立手遊與實體桌遊開發。</li>
 <li><strong>關鍵責任</strong>:<ul>
 <li>與 CEO 及各部門進行產品溝通，並跟進開發與測試。</li>
 <li>研究、規劃與設計遊戲之前後端功能、系統以及 UI/UX。</li>
 </ul>
 </li>
 <li><strong>核心成就</strong>:<ul>
-<li><strong>29天</strong>：獨立遊戲主企劃，曾榮登香港付費遊戲排行榜第一。</li>
-<li><strong>Shoot n Merge</strong> &amp; <strong>Sum n Merge</strong>：熱門小遊戲主企劃。</li>
-<li><strong>桌遊開發</strong>：主導《YouTuber》（台港販售）與《遺忘之都》（2018 德國艾森展）之策劃。</li>
-<li>帶領 <strong>10 人開發團隊</strong>。</li>
+<li><strong>付費榜冠軍作品</strong>：擔任《29 Days》獨立遊戲主企劃，榮登香港付費遊戲排行榜第一名。</li>
+<li><strong>休閒遊戲企劃</strong>：負責《Shoot n Merge》與《Sum n Merge》等休閒遊戲設計。</li>
+<li><strong>桌遊設計與發行</strong>：擔任《YouTuber》與《遺忘之都》主企劃，推動產品跨國發行，參與2018 德國艾森展。</li>
+<li><strong>團隊領導與協作</strong>：帶領 <strong>10 人開發團隊</strong>，確保專案開發與測試流程順暢。</li>
 </ul>
 </li>
 </ul>
 <h3>遊戲企劃 | 彩得線上娛樂股份有限公司</h3>
 <p><em>2014/08 ~ 2016/02</em></p>
 <ul>
+<li><strong>專案簡介</strong>: 休閒線上娛樂平台。</li>
 <li><strong>關鍵責任</strong>:<ul>
 <li>與部門主管及各部門進行需求訪談與溝通。</li>
-<li>研究、規劃與設計休閒博弈平台之前後端功能、系統以及 UI/UX。</li>
+<li>研究、規劃與設計休閒娛樂平台之前後端功能、系統以及 UI/UX。</li>
 </ul>
 </li>
-<li><strong>核心成就</strong>: 負責 <strong>每日任務系統、麻將獎金賽賽制、推幣機遊戲</strong> 設計。</li>
+<li><strong>核心成就</strong>:<ul>
+<li><strong>遊戲系統設計</strong>：主導每日任務系統、麻將獎金賽賽制與推幣機遊戲之規劃設計。</li>
 </ul>
-<h3>桌上遊戲設計師 | 自由設計 (Freelance)</h3>
+</li>
+</ul>
+<h3>桌上遊戲設計師 | 自接設計</h3>
 <p><em>2012/12 ~ 至今</em></p>
 <ul>
 <li><strong>關鍵責任</strong>:<ul>
@@ -157,11 +202,11 @@
 <li>設計桌遊的規則、系統、邏輯與 UI/UX；管理桌遊集資專案。</li>
 </ul>
 </li>
-<li><strong>經典成就</strong>: <ul>
-<li><strong>《猜腳丫》</strong>：設計與出版，版權被 <strong>新天鵝堡</strong> 買下並全球發行多國語言。</li>
-<li><strong>《Office 21》</strong>：協助設計與出版，版權被新天鵝堡買下並全球發行。</li>
-<li><strong>《空錢任務》</strong>：山頂洞人實驗室買斷出版發行。</li>
-<li><strong>《Honey Moo》</strong>：宜蘭大學畜牧系外包案，版權被新天鵝堡買下並全球發行。</li>
+<li><strong>桌遊作品</strong>:<ul>
+<li><strong>《猜腳丫》</strong>：獨立設計，版權被新天鵝堡買下並全球發行多國語言。</li>
+<li><strong>《Office 21》</strong>：協助設計、出版與集資，版權被新天鵝堡買下並全球發行。</li>
+<li><strong>《空錢任務》</strong>：獨立設計，版權被山頂洞人實驗室買斷出版發行。</li>
+<li><strong>《Honey Moo》</strong>：宜蘭大學畜牧系委託案，版權被新天鵝堡買下並全球發行。</li>
 <li><strong>《龍厚搭》</strong>：曾頭設計公司新年禮盒委託案，由其出版發行。</li>
 </ul>
 </li>
@@ -169,158 +214,164 @@
 
                             </div>
                         </section>
+
+                        <section class="mt-12">
+                            <div class="flex items-center gap-3 mb-8">
+                                <div class="w-8 h-1 bg-slate-800"></div>
+                                <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">Education</h2>
+                            </div>
+
+                            <div class="timeline-line pl-8 markdown-content">
+                                
+<ul>
+<li><strong>機械與電腦輔助工程學系</strong> | 逢甲大學 (2010/09 - 2012/02)<ul>
+<li><strong>經歷</strong>：創立桌上遊戲研習社</li>
+</ul>
+</li>
+</ul>
+
+                            </div>
+                        </section>
                     </div>
                 </div>
-    
+
                 <!-- RIGHT COLUMN (Sidebar): Col-4 -->
-                <div class="col-span-12 lg:col-span-4 bg-slate-50 border-t lg:border-t-0 lg:border-l border-slate-100 flex flex-col print:col-span-4 print:border-t-0 print:border-l">
-                    
+                <!-- Use 'contents' for mobile reordering -->
+                <div class="contents lg:block lg:col-span-4 lg:bg-slate-50 lg:border-l lg:border-slate-100 lg:flex lg:flex-col print:col-span-4 print:border-l print:block">
+
                     <!-- HEADER RIGHT (Traits) -->
-                    <div class="p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
-                            <!-- Traits (Using raw content from MD, assuming it's a list) -->
-                            <!-- Re-styling check: Original used manual map. 
-                                 For i18n, we should parse the UL/LI from traitsContent and style it. -->
-                            <div class="flex flex-col items-start gap-3 traits-list">
-                                
+                    <!-- Mobile Order: 2 -->
+                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
+                        <!-- Traits -->
+                        <!-- Mobile: Grid 2 Cols, Desktop: Flex Col -->
+                        <div class="grid grid-cols-2 gap-3 lg:flex lg:flex-col items-start traits-list print:flex print:flex-col">
+                            
 
 <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>負責任感</strong></span></div>
 <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>善於溝通</strong></span></div>
 <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>好奇心重</strong> </span></div>
 <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>注重效率</strong></span></div>
-<div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>樂於學習</strong></span></div>
 
 
-                            </div>
+                        </div>
                     </div>
-    
-                    <!-- BODY RIGHT (Skills & Edu) -->
-                    <div class="p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8">
-                            <section class="mb-12">
-                                <div class="flex items-center gap-3 mb-6">
+
+                    <!-- BODY RIGHT (Skills) -->
+                    <!-- Mobile Order: 3 -->
+                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8 bg-slate-50 lg:bg-transparent">
+                        <section class="mb-12">
+                            <div class="flex items-center gap-3 mb-6">
                                 <div class="w-6 h-1 bg-slate-400"></div>
                                 <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="skills">Skills</h2>
                             </div>
                             <div class="markdown-content sidebar-content">
                                 
 <ul>
-<li><strong>核心工具</strong>: Axure, 墨刀, Office, Notion, Google Workspace</li>
-<li><strong>AI 效能工具</strong>: Gemini, Antigravity, Vibe Coding</li>
+<li><strong>核心工具</strong>: Axure, 墨刀 (Modao), Google Workspace, Jira, Confluence, Microsoft 365, Figma</li>
+<li><strong>技術協作</strong>: Basic API Testing (Postman), Version Control Logic (Git)</li>
+<li><strong>AI技能</strong>: AI Assisted Development, Generative AI Application, AI Enhanced Workflow</li>
 <li><strong>方法論</strong>: 敏捷開發 (Scrum), 瀑布開發, 專案管理, UI/UX規劃</li>
-<li><strong>特殊領域</strong>: AI 開發流程優化、合規化、虛擬貨幣系統、NFT 平台</li>
 </ul>
 
                             </div>
                         </section>
-    
-                        <section>
-                            <div class="flex items-center gap-3 mb-6">
-                                <div class="w-6 h-1 bg-slate-400"></div>
-                                <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="education">Education</h2>
-                            </div>
-                            <div class="markdown-content sidebar-content">
-                                
-<ul>
-<li><strong>機械與電腦輔助工程學系 (肄業)</strong> | 逢甲大學 (2010/09 - 2012/02)<ul>
-<li><strong>經歷</strong>：創立桌上遊戲研習社</li>
-</ul>
-</li>
-<li><strong>長期交換學生</strong> | Lichtenberg-Gymnasium Cuxhaven, Germany (2007/08 - 2008/07)</li>
-<li><strong>綜合高中科製圖組</strong> | 木柵高工 (2005/09 - 2010/06)</li>
-</ul>
 
-                            </div>
-                        </section>
-                    </div>
+                    </section>
                 </div>
             </div>
-        
+            </div > 
+                                                
             <div id="content-en" class="grid grid-cols-1 lg:grid-cols-12 h-full flex-grow lang-section transition-opacity duration-300 hidden opacity-0 print:grid-cols-12">
-                
+
                 <!-- LEFT COLUMN (Main Content): Col-8 -->
-                <div class="col-span-12 lg:col-span-8 flex flex-col print:col-span-8">
-                    
-                    <!-- HEADER LEFT -->
-                    <header class="p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8">
+                <!-- Use 'contents' for mobile to allow children to be part of the main grid, enabling reordering -->
+                <div class="contents lg:block lg:col-span-8 lg:flex lg:flex-col print:col-span-8 print:block">
+
+                    <!-- HEADER LEFT (Name/Summary/Contact) -->
+                    <!-- Mobile Order: 1 -->
+                    <header class="order-1 lg:order-none col-span-1 p-6 lg:p-12 lg:pb-8 lg:pr-8 border-b border-gray-100 relative z-10 print:p-12 print:pb-8 print:pr-8 bg-white lg:bg-transparent">
                         <h1 class="text-4xl font-black text-slate-800 tracking-tight mb-2 leading-tight">
-                            Anton (Ying-Tan) Liu 
+                            Ying-Tan Liu (Anton)
                             
                         </h1>
                         <div class="text-base text-slate-600 leading-relaxed mb-6 mt-4 border-l-4 border-slate-800 pl-4 py-1 italic bg-slate-50 rounded-r">
                             
-<p><strong>Senior Product Manager | 10+ Years in Social, Blockchain, Gaming &amp; Entertainment Industries</strong></p>
-<p>0-to-1 Product Development Expert capable of leading cross-functional teams of 10+. Consistently driving <strong>Full Lifecycle Management</strong>, from requirements gathering, scope definition, and spec writing, to R&amp;D scheduling, UAT, and product delivery.</p>
+<p><strong>Senior Product Manager | 10+ Years Experience in Social, Gaming &amp; Entertainment Industries</strong></p>
+<p>Experienced in 0-to-1 product development, capable of leading cross-functional teams of 10+. Consistently driving <strong>Full Lifecycle Management</strong>, from requirements gathering, scope definition, and spec writing, to R&amp;D scheduling, UAT, and product delivery.</p>
 
                         </div>
-                        
+
                         <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-slate-500 mt-auto">
-                            <span class="flex items-center gap-1.5"><span class="text-slate-900">📱</span> <strong>Phone</strong>: +886 988 260 518</span>
-<span class="flex items-center gap-1.5"><span class="text-slate-900">✉️</span> <strong>Email</strong>: <a href="mailto:YTAnton@outlook.com">YTAnton@outlook.com</a></span>
-<span class="flex items-center gap-1.5"><span class="text-slate-900">📅</span> <strong>DOB</strong>: 1990-05-18</span>
+                            <span class="flex items-center gap-1.5"><span class="text-slate-900">📱</span> +886 988 260 518</span>
+<span class="flex items-center gap-1.5"><span class="text-slate-900">✉️</span> <a href="mailto:play911419@gmail.com">play911419@gmail.com</a></span>
+<span class="flex items-center gap-1.5"><span class="text-slate-900">📅</span> 1990-05-18</span>
                         </div>
                     </header>
-    
-                    <!-- BODY LEFT (Work) -->
-                    <div class="p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8">
+
+                    <!-- BODY LEFT (Work & Education) -->
+                    <!-- Mobile Order: 4 -->
+                    <div class="order-4 lg:order-none col-span-1 p-6 pr-6 lg:p-12 lg:pr-8 lg:pt-8 flex-grow print:p-12 print:pr-8 print:pt-8 bg-white lg:bg-transparent">
                         <section>
                             <div class="flex items-center gap-3 mb-8">
                                 <div class="w-8 h-1 bg-slate-800"></div>
                                 <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="work">Work Experience</h2>
                             </div>
-                            
+
                             <div class="timeline-line pl-8 markdown-content">
                                 
-<h3>Product Manager | Shunwei Information Co., Ltd.</h3>
+<h3>Product Manager | Shunwei Information</h3>
 <p><em>2024/03 ~ Present</em></p>
 <ul>
 <li><strong>Project</strong>: Video Social Communication App.</li>
 <li><strong>Key Responsibilities</strong>:<ul>
-<li>Conducted requirement interviews with CEO and clients, accurately translating business logic.</li>
-<li>Planned frontend/backend functions and UI/UX.</li>
-<li>Held regular technical reviews to optimize team development efficiency.</li>
+<li>Conducted requirement interviews with management and clients, translating business logic.</li>
+<li>Planned frontend/backend system functions.</li>
+<li>Coordinated cross-department collaboration and schedule control.</li>
 </ul>
 </li>
 <li><strong>Core Achievements</strong>:<ul>
 <li><strong>AI Workflow Implementation</strong>: Established <strong>Agentic Workflows</strong> to assist development, significantly improving <strong>spec accuracy and cross-department alignment</strong>, reducing communication costs.</li>
-<li><strong>Social Ecosystem (0 to 1)</strong>: Led P1-P6 development phases, covering content publishing, interaction systems, auto/media moderation, data monitoring, and safety reporting systems.</li>
+<li><strong>Social Ecosystem (0 to 1)</strong>: Led the <strong>0-to-1 MVP development over 6 months</strong>, delivering multiple key iterations covering content publishing, interaction systems, auto/media moderation, and data monitoring.</li>
 <li><strong>Growth &amp; Incentives Optimization</strong>: Designed and optimized Red Packet systems (auto-claim, batch settings, wager logic) and auto-join invitation mechanisms.</li>
-<li><strong>Cross-Platform &amp; UX</strong>: Implemented deep mobile web (mWeb) integration, optimizing visitor mode, mute experience, and external share flows.</li>
+<li><strong>Cross-Platform &amp; UX</strong>: Implemented deep mobile web (mWeb) integration, optimizing visitor mode and external share flows.</li>
 <li><strong>Globalization &amp; Infrastructure</strong>: Built multi-language framework; managed custom development for India IM version and 3rd-party login integration.</li>
-<li><strong>Video/Audio Features</strong>: Optimized voice/file messaging and &quot;Meet&quot; social features.</li>
+<li><strong>Video/Audio Features</strong>: Voice/File message transmission features.</li>
 </ul>
 </li>
 </ul>
-<h3>Project Manager | Wo Ai Digital Technology Co., Ltd.</h3>
+<h3>Project Manager | 4i Tech</h3>
 <p><em>2022/06 ~ 2023/12</em></p>
 <ul>
-<li><strong>Project</strong>: Blockchain Video Sharing Platform, NFT Platform.</li>
+<li><strong>Project</strong>: Blockchain Video Sharing Platform.</li>
 <li><strong>Key Responsibilities</strong>:<ul>
-<li><strong>Authored full Technical Specifications (SPEC) in English</strong> and communicated with foreign development teams.</li>
+<li>Authored comprehensive technical specifications in English to ensure precise technical alignment.</li>
+<li>Managed requirements directly with US clients and coordinated a multi-national development team entirely in English.</li>
 <li>Designed frontend/backend functions, systems, and UI/UX.</li>
 </ul>
 </li>
 <li><strong>Core Achievements</strong>:<ul>
-<li><strong>0 to 1 Launch</strong>: Completed product development and launch within 2 months.</li>
-<li>Led an <strong>11-person team</strong>, establishing and implementing Agile processes.</li>
-<li>Products: Blockchain Video Platform, NFT Redemption &amp; Marketplace.</li>
+<li><strong>Rapid 0-to-1 Launch</strong>: Completed product development and launch within <strong>2 months</strong>, followed by continuous iterations.</li>
+<li><strong>Agile Process Implementation</strong>: Led an <strong>11-person team</strong> to establish Agile processes, enhancing delivery predictability.</li>
 </ul>
 </li>
 </ul>
-<h3>Product Manager | Paradise Games Co., Ltd.</h3>
+<h3>Product Manager | Paradise-Soft</h3>
 <p><em>2021/03 ~ 2022/06</em></p>
 <ul>
 <li><strong>Project</strong>: Online Entertainment Platform Development.</li>
 <li><strong>Key Responsibilities</strong>:<ul>
 <li>Conducted requirement interviews with clients and departments.</li>
-<li>Researched, planned, and designed platform functions, systems, and UI/UX.</li>
+<li>Planned and designed platform functions, systems, and UI/UX.</li>
 </ul>
 </li>
 <li><strong>Core Achievements</strong>:<ul>
-<li>Modules: <strong>KYC Onboarding, Gen-2 Reporting, Account Security, Payment/Cashflow Requirements</strong>.</li>
-<li>Planned and implemented <strong>Crypto Deposit/Withdrawal Systems &amp; Flows</strong>.</li>
+<li><strong>Fintech &amp; Crypto Implementation</strong>: Designed <strong>USDT deposit/withdrawal</strong> and <strong>crypto wallet binding flows</strong>.</li>
+<li><strong>Architectural Design</strong>: Planned <strong>Multi-language Framework</strong> and established <strong>Key Naming Conventions</strong>.</li>
+<li><strong>Live Operations</strong>: Resolved production issues to ensure platform stability.</li>
 </ul>
 </li>
 </ul>
-<h3>Product Manager | Rainbow Technology Co., Ltd. (Marshall Islands)</h3>
+<h3>Product Manager | Rainbow Tech Limited</h3>
 <p><em>2019/11 ~ 2021/01</em></p>
 <ul>
 <li><strong>Project</strong>: Texas Hold&#39;em Platform Globalization.</li>
@@ -331,36 +382,42 @@
 </ul>
 </li>
 <li><strong>Core Achievements</strong>:<ul>
-<li><strong>International Compliance</strong>: Secured <strong>Isle of Man Government Regulation</strong> approval, legalizing the platform globally.</li>
-<li>Features: <strong>5-Star Review Prompt, Auto Rebate, iOS IAP, Email Verification Automation, KYC System, MTT Leaderboard, SpinUp, OFC Micro-stakes, Marquee, Currency Abbreviations</strong>, etc.</li>
+<li><strong>International Compliance</strong>: Secured <strong>Isle of Man</strong> license to legalize global platform operations.</li>
+<li><strong>Operations Automation</strong>: Implemented <strong>Auto Rebate, KYC systems, and Email Verification</strong> to enhance efficiency and security.</li>
+<li><strong>Growth &amp; Revenue</strong>: Planned <strong>iOS IAP, MTT Leaderboards, and SpinUp modes</strong>, optimizing revenue flows.</li>
 </ul>
 </li>
 </ul>
-<h3>Game Designer | Cunle Technology Co., Ltd. (Chengdu)</h3>
+<h3>Game Designer | Chengdu Cunle Technology</h3>
 <p><em>2016/03 ~ 2019/09</em></p>
 <ul>
+<li><strong>Project</strong>: Indie Mobile Games &amp; Board Game Development.</li>
 <li><strong>Key Responsibilities</strong>:<ul>
 <li>Communicated product vision with CEO and departments; tracked development and testing.</li>
 <li>Researched, planned, and designed game functions, systems, and UI/UX.</li>
 </ul>
 </li>
 <li><strong>Core Achievements</strong>:<ul>
-<li><strong>29 Days</strong>: Sole Lead Designer for an indie game that reached #1 on Hong Kong Paid Games Chart.</li>
-<li><strong>Shoot n Merge</strong> &amp; <strong>Sum n Merge</strong>: Lead Designer for hit mini-games.</li>
-<li><strong>Board Game Dev</strong>: Led planning for &quot;YouTuber&quot; (Sold in TW/HK) and &quot;City of Forgotten&quot; (Essen Spiel 2018).</li>
-<li>Led a <strong>10-person development team</strong>.</li>
+<li><strong>Chart-Topping Title</strong>: Sole Lead Designer for &quot;29 Days&quot;, reaching #1 on Hong Kong Paid Games Chart.</li>
+<li><strong>Casual Game Design</strong>: Designed casual games like &quot;Shoot n Merge&quot; and &quot;Sum n Merge&quot;.</li>
+<li><strong>Board Game Design &amp; Publication</strong>: Led planning for &quot;YouTuber&quot; and &quot;City of Forgotten&quot;, driving international release and exhibiting at Essen Spiel 2018.</li>
+<li><strong>Team Leadership</strong>: Led a <strong>10-person development team</strong> to ensure smooth development and testing processes.</li>
 </ul>
 </li>
 </ul>
-<h3>Game Designer | Caide Online Entertainment Co., Ltd.</h3>
+<h3>Game Designer | BonusWinner Entertainment</h3>
 <p><em>2014/08 ~ 2016/02</em></p>
 <ul>
+<li><strong>Project</strong>: Casual Online Entertainment Platform.</li>
 <li><strong>Key Responsibilities</strong>:<ul>
 <li>Conducted requirement interviews with executives and departments.</li>
-<li>Researched, planned, and designed casual gambling platform functions, systems, and UI/UX.</li>
+<li>Researched, planned, and designed casual entertainment platform functions, systems, and UI/UX.</li>
 </ul>
 </li>
-<li><strong>Core Achievements</strong>: Designed <strong>Daily Missions, Mahjong Tournament System, Coin Pusher Game</strong>.</li>
+<li><strong>Core Achievements</strong>:<ul>
+<li><strong>Game System Design</strong>: Led the design of Daily Missions, Mahjong Tournament Systems, and Coin Pusher games.</li>
+</ul>
+</li>
 </ul>
 <h3>Board Game Designer | Freelance</h3>
 <p><em>2012/12 ~ Present</em></p>
@@ -370,12 +427,30 @@
 <li>Designed rules, systems, logic, and UI/UX; managed crowdfunding campaigns.</li>
 </ul>
 </li>
-<li><strong>Classic Achievements</strong>:<ul>
-<li><strong>&quot;Foot Guess&quot;</strong>: Designed &amp; Published. Rights bought by <strong>Swan Panasia</strong> for global multi-language release.</li>
-<li><strong>&quot;Office 21&quot;</strong>: Co-designed &amp; Published. Rights bought by Swan Panasia for global release.</li>
-<li><strong>&quot;Kung Qian Ren Wu&quot;</strong>: Bought out by Homosapiens Lab.</li>
-<li><strong>&quot;Honey Moo&quot;</strong>: Outsourced project for Ilan University, rights bought by Swan Panasia for global release.</li>
-<li><strong>&quot;Long Hou Da&quot;</strong>: Commissioned CNY Gift Set for Zeng Tou Design, published by them.</li>
+<li><strong>Board Game Titles</strong>:<ul>
+<li><strong>&quot;Foot Guess&quot;</strong>: Independently designed. Rights purchased by <strong>Swan Panasia</strong> for global multi-language release.</li>
+<li><strong>&quot;Office 21&quot;</strong>: Co-designed, published, and managed crowdfunding. Rights purchased by Swan Panasia for global release.</li>
+<li><strong>&quot;Kung Qian Ren Wu&quot;</strong>: Independently designed. Rights purchased by Homosapiens Lab.</li>
+<li><strong>&quot;Honey Moo&quot;</strong>: Commissioned by National Ilan University. Rights purchased by Swan Panasia for global release.</li>
+<li><strong>&quot;Long Hou Da&quot;</strong>: Commissioned by Zeng Tou Design as a CNY Gift Set and published.</li>
+</ul>
+</li>
+</ul>
+
+                            </div>
+                        </section>
+
+                        <section class="mt-12">
+                            <div class="flex items-center gap-3 mb-8">
+                                <div class="w-8 h-1 bg-slate-800"></div>
+                                <h2 class="text-xl font-bold text-slate-800 tracking-widest uppercase" data-i18n="education">Education</h2>
+                            </div>
+
+                            <div class="timeline-line pl-8 markdown-content">
+                                
+<ul>
+<li><strong>Dept. of Mechanical and Computer-Aided Engineering, Feng Chia University</strong> | Feng Chia University (2010/09 - 2012/02)<ul>
+<li><strong>Experience</strong>: Founder of Board Game Club</li>
 </ul>
 </li>
 </ul>
@@ -384,86 +459,70 @@
                         </section>
                     </div>
                 </div>
-    
+
                 <!-- RIGHT COLUMN (Sidebar): Col-4 -->
-                <div class="col-span-12 lg:col-span-4 bg-slate-50 border-t lg:border-t-0 lg:border-l border-slate-100 flex flex-col print:col-span-4 print:border-t-0 print:border-l">
-                    
+                <!-- Use 'contents' for mobile reordering -->
+                <div class="contents lg:block lg:col-span-4 lg:bg-slate-50 lg:border-l lg:border-slate-100 lg:flex lg:flex-col print:col-span-4 print:border-l print:block">
+
                     <!-- HEADER RIGHT (Traits) -->
-                    <div class="p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
-                            <!-- Traits (Using raw content from MD, assuming it's a list) -->
-                            <!-- Re-styling check: Original used manual map. 
-                                 For i18n, we should parse the UL/LI from traitsContent and style it. -->
-                            <div class="flex flex-col items-start gap-3 traits-list">
-                                
+                    <!-- Mobile Order: 2 -->
+                    <div class="order-2 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-12 lg:pb-8 border-b border-gray-200/50 bg-slate-100/50 print:p-12 print:pl-8 print:pt-12 print:pb-8">
+                        <!-- Traits -->
+                        <!-- Mobile: Grid 2 Cols, Desktop: Flex Col -->
+                        <div class="grid grid-cols-2 gap-3 lg:flex lg:flex-col items-start traits-list print:flex print:flex-col">
+                            
 
 <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>Accountable</strong></span></div>
-<div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>Communicator</strong></span></div>
+<div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>Communicative</strong></span></div>
 <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>Curious</strong></span></div>
 <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>Efficient</strong></span></div>
-<div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span><span class="text-lg font-bold text-slate-600 tracking-widest"><strong>Lifelong Learner</strong></span></div>
 
 
-                            </div>
+                        </div>
                     </div>
-    
-                    <!-- BODY RIGHT (Skills & Edu) -->
-                    <div class="p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8">
-                            <section class="mb-12">
-                                <div class="flex items-center gap-3 mb-6">
+
+                    <!-- BODY RIGHT (Skills) -->
+                    <!-- Mobile Order: 3 -->
+                    <div class="order-3 lg:order-none col-span-1 p-6 lg:p-12 lg:pl-8 lg:pt-8 flex-grow print:p-12 print:pl-8 print:pt-8 bg-slate-50 lg:bg-transparent">
+                        <section class="mb-12">
+                            <div class="flex items-center gap-3 mb-6">
                                 <div class="w-6 h-1 bg-slate-400"></div>
                                 <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="skills">Skills</h2>
                             </div>
                             <div class="markdown-content sidebar-content">
                                 
 <ul>
-<li><strong>Core Tools</strong>: Axure, MockingBot, Office, Notion, Google Workspace</li>
-<li><strong>AI Efficiency Tools</strong>: Gemini, Antigravity, Vibe Coding</li>
+<li><strong>Core Tools</strong>: Axure, Modao, Google Workspace, Jira, Confluence, Microsoft 365, Figma</li>
+<li><strong>Technical Collaboration</strong>: Basic API Testing (Postman), Version Control Logic (Git)</li>
+<li><strong>AI Skills</strong>: AI Assisted Development, Generative AI Application, AI Enhanced Workflow</li>
 <li><strong>Methodologies</strong>: Agile (Scrum), Waterfall, Project Management, UI/UX Planning</li>
-<li><strong>Specialized Domains</strong>: AI Workflow Optimization, Compliance, Crypto Systems, NFT Platforms</li>
 </ul>
 
                             </div>
                         </section>
-    
-                        <section>
-                            <div class="flex items-center gap-3 mb-6">
-                                <div class="w-6 h-1 bg-slate-400"></div>
-                                <h2 class="text-lg font-bold text-slate-700 tracking-widest uppercase" data-i18n="education">Education</h2>
-                            </div>
-                            <div class="markdown-content sidebar-content">
-                                
-<ul>
-<li><strong>Dept. of Mechanical &amp; Computer-Aided Engineering (Incomplete)</strong> | Feng Chia University (2010/09 - 2012/02)<ul>
-<li><strong>Experience</strong>: Founder of Board Game Study Club</li>
-</ul>
-</li>
-<li><strong>Exchange Student</strong> | Lichtenberg-Gymnasium Cuxhaven, Germany (2007/08 - 2008/07)</li>
-<li><strong>Drafting Design</strong> | Muzha Vocational High School (2005/09 - 2010/06)</li>
-</ul>
 
-                            </div>
-                        </section>
-                    </div>
+                    </section>
                 </div>
             </div>
+            </div > 
 
-        <!-- Clean Footer -->
-        <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full absolute bottom-0 z-20"></footer>
-    </div>
+                                                <!-- Clean Footer -->
+                                                <footer class="h-4 bg-gradient-to-r from-slate-800 to-slate-600 col-span-12 w-full absolute bottom-0 z-20"></footer>
+                                            </div>
 
-    <!-- UI Controls Container -->
-    <div class="fixed bottom-8 right-8 no-print print:hidden flex flex-col gap-4">
-        
-        <!-- Language Switcher (Injected via JS, but placeholder here for structure) -->
-        <div id="i18n-controls"></div>
+                                            <!-- UI Controls Container -->
+                                            <div class="fixed bottom-8 right-8 no-print print:hidden flex flex-col gap-4">
 
-        <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-105 active:scale-95" title="Print / Save PDF">
-            <span class="text-2xl">🖨️</span>
-        </button>
-    </div>
+                                                <!-- Language Switcher (Injected via JS, but placeholder here for structure) -->
+                                                <div id="i18n-controls"></div>
 
-    <!-- Scripts -->
-    <script src="./js/i18n.js"></script>
-</body>
-</html>
-        
+                                                <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-105 active:scale-95" title="Print / Save PDF">
+                                                    <span class="text-2xl">🖨️</span>
+                                                </button>
+                                            </div>
+
+                                            <!-- Scripts -->
+                                            <script src="./js/i18n.js"></script>
+                                        </body>
+                                    </html>
+                                    
