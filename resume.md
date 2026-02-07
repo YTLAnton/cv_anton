@@ -150,6 +150,7 @@ Senior Product Manager | 10+ Years Experience in Social, Gaming & Entertainment 
 
 # Ying-Tan Liu (Anton)
 
+## Summary
 > **Senior Product Manager | 10+ Years Experience in Social, Gaming & Entertainment Industries**
 >
 > Experienced in 0-to-1 product development, capable of leading cross-functional teams of 10+. Consistently driving **Full Lifecycle Management**, from requirements gathering, scope definition, and spec writing, to R&D scheduling, UAT, and product delivery.
