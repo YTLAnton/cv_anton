@@ -1,0 +1,36 @@
+name: MD to HTML Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'resume.md'
+      - 'scripts/build.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install fs-extra marked
+
+      - name: Run build script
+        # 這裡根據你的截圖，指定去 scripts 資料夾執行
+        run: node scripts/build.js
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Auto-generate index.html from resume.md" || echo "No changes to commit"
+          git push
