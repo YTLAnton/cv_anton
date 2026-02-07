@@ -2,13 +2,13 @@
 
 ## Meta
 - **OG_Title**: 劉胤檀 (Anton Liu) - Product Manager Resume
-- **OG_Description**: 資深產品經理 | 10年+ 社交、遊戲與娛樂產業經驗 
-Senior Product Manager | 10+ Years Experience in Social, Gaming & Entertainment Industries
+- **OG_Description**: 產品經理 | 10年+ 社群、遊戲與娛樂產業經驗 
+Product Manager | 10+ Years Experience in Social, Gaming & Entertainment Industries
 - **OG_Image**: https://ytlanton.github.io/cv_yingtanliu/tatoo.png
 
 
 ## 摘要
-> **資深產品經理 | 10年+社交、遊戲與娛樂產業經驗**
+> **產品經理 | 10年+ 社群、遊戲與娛樂產業經驗**
 >
 > 具備 0 到 1 的產品開發經驗，可帶領十人以上的跨職能團隊。穩定驅動 **全生命週期管理**，從需求溝通、需求收斂、SPEC撰寫，到訂定研發時程、驗收測試與產品交付。
 
@@ -151,7 +151,7 @@ Senior Product Manager | 10+ Years Experience in Social, Gaming & Entertainment 
 # Ying-Tan Liu (Anton)
 
 ## Summary
-> **Senior Product Manager | 10+ Years Experience in Social, Gaming & Entertainment Industries**
+> **Product Manager | 10+ Years Experience in Social, Gaming & Entertainment Industries**
 >
 > Experienced in 0-to-1 product development, capable of leading cross-functional teams of 10+. Consistently driving **Full Lifecycle Management**, from requirements gathering, scope definition, and spec writing, to R&D scheduling, UAT, and product delivery.
 
